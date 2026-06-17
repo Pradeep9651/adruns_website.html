@@ -18,7 +18,7 @@
                         brandYellow: '#FBC02D',
                         brandDark: '#111827',
                         brandGray: '#F3F4F6',
-                        menuOrange: '#F28C28' /* Matches the color profile in your screenshot */
+                        menuOrange: '#F28C28'
                     }
                 }
             }
@@ -29,9 +29,12 @@
         .page-section.active { display: block; }
         .workflow-step { display: none; }
         .workflow-step.active { display: block; }
+        /* Custom scrollbar for chatbot messages */
+        .chat-scroll::-webkit-scrollbar { width: 4px; }
+        .chat-scroll::-webkit-scrollbar-thumb { background-color: #4B5563; border-radius: 2px; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans flex flex-col min-h-screen">
+<body class="bg-gray-50 text-gray-900 font-sans flex flex-col min-h-screen relative">
 
     <!-- REVISED LOGO & HAMBURGER NAVIGATION HEADER -->
     <header class="bg-black text-white sticky top-0 z-50 shadow-md border-b border-gray-900">
@@ -53,7 +56,7 @@
                 </div>
             </div>
 
-            <!-- RIGHT SIDE: Modern 3-Line Hamburger Menu Button -->
+            <!-- RIGHT SIDE: Modern 3-Line Hamburger Menu Button (Verbatim from Screenshot_2026-06-18-01-09-31-48_40deb401b9ffe8e1df2f1cc5ba480b12.jpg) -->
             <button id="menuToggleButton" onclick="toggleNavMenu()" class="text-menuOrange hover:text-orange-400 focus:outline-none p-2 transition-colors duration-200" aria-label="Toggle Navigation Menu">
                 <i id="menuIcon" class="fa-solid fa-bars text-2xl sm:text-3xl"></i>
             </button>
@@ -86,6 +89,55 @@
 
         </div>
     </header>
+
+    <!-- FLOATING AI CHATBOT WIDGET -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <!-- Chat Window (Hidden by Default) -->
+        <div id="aiChatWindow" class="hidden w-80 sm:w-96 h-[450px] bg-brandDark border border-gray-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden mb-4 transition-all duration-300 transform translate-y-2 opacity-0">
+            <!-- Chat Header -->
+            <div class="bg-black p-4 border-b border-gray-800 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-full bg-brandYellow flex items-center justify-center text-brandDark text-sm">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-black text-white tracking-wide">AdRuns AI Assistant</h4>
+                        <span class="text-[10px] text-emerald-400 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Online Framework</span>
+                    </div>
+                </div>
+                <button onclick="toggleChatbot()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            
+            <!-- Chat Body / Messages Layer -->
+            <div id="chatMessageContainer" class="flex-grow p-4 overflow-y-auto chat-scroll space-y-3 bg-slate-950 text-xs">
+                <!-- Welcome Bot Message -->
+                <div class="flex items-start gap-2.5 max-w-[85%]">
+                    <div class="w-6 h-6 rounded-full bg-brandYellow/10 text-brandYellow flex items-center justify-center text-[10px] flex-shrink-0 mt-0.5"><i class="fa-solid fa-robot"></i></div>
+                    <div class="bg-gray-900 text-gray-200 p-3 rounded-2xl rounded-tl-none leading-relaxed">
+                        Welcome to **AdRuns.in**! I can help you understand our transit inventory, map out splits, or assist with calculations. What are you looking to run today?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Suggestions Interface Container -->
+            <div id="chatSuggestions" class="px-4 py-2 bg-slate-950 flex gap-2 overflow-x-auto whitespace-nowrap chat-scroll border-t border-gray-900">
+                <button onclick="submitSuggestedQuestion('How do I track my campaign?')" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 text-[10px] text-gray-300 font-medium px-2.5 py-1 rounded-full transition-all">How do I track fleets?</button>
+                <button onclick="submitSuggestedQuestion('What is the revenue split?')" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 text-[10px] text-gray-300 font-medium px-2.5 py-1 rounded-full transition-all">What is the payout split?</button>
+                <button onclick="submitSuggestedQuestion('How do I start building?')" class="bg-gray-900 hover:bg-gray-800 border border-gray-800 text-[10px] text-gray-300 font-medium px-2.5 py-1 rounded-full transition-all">How to get started?</button>
+            </div>
+
+            <!-- Chat Inputs Bar -->
+            <div class="p-3 bg-black border-t border-gray-800 flex items-center gap-2">
+                <input type="text" id="chatInputField" onkeypress="handleChatKeyPress(event)" placeholder="Ask about transit media packages..." class="flex-grow bg-zinc-900 text-white rounded-xl px-3 py-2.5 text-xs border border-zinc-800 focus:outline-none focus:border-brandYellow placeholder-gray-500">
+                <button onclick="processUserChatInput()" class="w-9 h-9 rounded-xl bg-brandYellow hover:bg-yellow-500 text-brandDark flex items-center justify-center transition-all"><i class="fa-solid fa-paper-plane text-xs"></i></button>
+            </div>
+        </div>
+
+        <!-- Chat Trigger Floating Button Toggle -->
+        <button onclick="toggleChatbot()" class="bg-brandYellow hover:bg-yellow-500 text-brandDark w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-95 border-2 border-black" aria-label="Open Chatbot Support">
+            <i id="chatTriggerIcon" class="fa-solid fa-comments text-xl"></i>
+        </button>
+    </div>
 
     <!-- MAIN CONTENT CONTAINERS -->
     <main class="flex-grow">
@@ -132,7 +184,7 @@
                         <p class="text-sm text-gray-600 mt-2">Track real-time location metrics of matched vehicle fleets dynamically over secure APIs.</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100">
-                        <div class="text-brandYellow text-2xl mb-3"><i class="fa-solid fa-chart-mixed"></i></div>
+                        <div class="text-brandYellow text-2xl mb-3"><i class="fa-solid fa-chart-line"></i></div>
                         <h4 class="font-bold text-lg text-brandDark">Granular Analytics</h4>
                         <p class="text-sm text-gray-600 mt-2">Measure impressions, reach metrics, coverage heat-maps, and optimized ROI calculations.</p>
                     </div>
@@ -185,17 +237,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Call to Action Footer Panel inside About Section -->
-                <div class="bg-brandDark text-white p-8 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-6 mt-6">
-                    <div>
-                        <h3 class="text-lg font-bold text-white">Ready to test the booking architecture?</h3>
-                        <p class="text-xs text-gray-400 mt-1">Simulate an online programmatic purchase using our integrated console workspace panels.</p>
-                    </div>
-                    <button onclick="navigateTo('workflow-app')" class="bg-brandYellow hover:bg-yellow-500 text-brandDark font-bold text-xs px-5 py-3 rounded-xl shadow-md transition-all whitespace-nowrap">
-                        Launch Application Console <i class="fa-solid fa-arrow-right ml-1"></i>
-                    </button>
                 </div>
             </div>
         </section>
@@ -570,24 +611,110 @@
             
             if(menuElement.classList.contains('hidden')) {
                 menuElement.classList.remove('hidden');
-                iconElement.className = "fa-solid fa-xmark text-2xl sm:text-3xl"; // Transforms bar into clean close cross icon
+                iconElement.className = "fa-solid fa-xmark text-2xl sm:text-3xl";
             } else {
                 menuElement.classList.add('hidden');
-                iconElement.className = "fa-solid fa-bars text-2xl sm:text-3xl"; // Reverts safely back to 3-line bar layout
+                iconElement.className = "fa-solid fa-bars text-2xl sm:text-3xl";
             }
         }
 
-        // Handles page view swaps and collapses the drop-down panel automatically
         function handleMenuNavigation(pageId) {
             navigateTo(pageId);
             toggleNavMenu();
         }
 
-        // Global Page Layer Visibility Handler
         function navigateTo(pageId) {
             document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==========================================
+        // INTEGRATED AI CHATBOT FUNCTIONALITY
+        // ==========================================
+        function toggleChatbot() {
+            const chatWindow = document.getElementById('aiChatWindow');
+            const triggerIcon = document.getElementById('chatTriggerIcon');
+            
+            if(chatWindow.classList.contains('hidden')) {
+                chatWindow.classList.remove('hidden');
+                // Allow a small tick for CSS transitions to kick in cleanly
+                setTimeout(() => {
+                    chatWindow.classList.remove('translate-y-2', 'opacity-0');
+                }, 10);
+                triggerIcon.className = "fa-solid fa-chevron-down text-lg";
+            } else {
+                chatWindow.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => {
+                    chatWindow.classList.add('hidden');
+                }, 300);
+                triggerIcon.className = "fa-solid fa-comments text-xl";
+            }
+        }
+
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                processUserChatInput();
+            }
+        }
+
+        function submitSuggestedQuestion(questionText) {
+            appendChatMessage(questionText, 'user');
+            generateBotResponse(questionText);
+        }
+
+        function processUserChatInput() {
+            const inputField = document.getElementById('chatInputField');
+            const query = inputField.value.trim();
+            if(!query) return;
+
+            appendChatMessage(query, 'user');
+            inputField.value = '';
+            generateBotResponse(query);
+        }
+
+        function appendChatMessage(text, sender) {
+            const container = document.getElementById('chatMessageContainer');
+            const bubbleWrapper = document.createElement('div');
+            
+            if (sender === 'user') {
+                bubbleWrapper.className = "flex justify-end w-full";
+                bubbleWrapper.innerHTML = `
+                    <div class="bg-brandYellow text-brandDark font-semibold p-2.5 px-3.5 rounded-2xl rounded-tr-none max-w-[85%] text-right shadow-md">
+                        ${text}
+                    </div>
+                `;
+            } else {
+                bubbleWrapper.className = "flex items-start gap-2.5 max-w-[85%]";
+                bubbleWrapper.innerHTML = `
+                    <div class="w-6 h-6 rounded-full bg-brandYellow/10 text-brandYellow flex items-center justify-center text-[10px] flex-shrink-0 mt-0.5"><i class="fa-solid fa-robot"></i></div>
+                    <div class="bg-gray-900 text-gray-200 p-2.5 px-3.5 rounded-2xl rounded-tl-none leading-relaxed shadow-md">
+                        ${text}
+                    </div>
+                `;
+            }
+            
+            container.appendChild(bubbleWrapper);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function generateBotResponse(userQuery) {
+            const queryLower = userQuery.toLowerCase();
+            let systemResponse = "I'm computing your target layout request. For direct enterprise pricing or regional operations support, you can connect straight to our team at **adruns1230@gmail.com**.";
+
+            // Simple responsive text routing dictionary
+            if(queryLower.includes('track') || queryLower.includes('gps') || queryLower.includes('fleet')) {
+                systemResponse = "Our operating infrastructure pulls spatial telemetry logs directly via API modules. Once your campaign launches in Step 6 of the Console, you can monitor raw geofence coordinate updates in real-time.";
+            } else if (queryLower.includes('split') || queryLower.includes('payout') || queryLower.includes('fee') || queryLower.includes('cost')) {
+                systemResponse = "AdRuns provides transparency structures: **70% to 80%** of gross media capital structures route directly back down to regional transit drivers, while we keep a minor programmatic balance management fee.";
+            } else if (queryLower.includes('start') || queryLower.includes('book') || queryLower.includes('launch') || queryLower.includes('console')) {
+                systemResponse = "Getting a campaign live is simple! Head over to our **Self-Serve Console** link via the menu dropdown. You can configure your city budgets, review asset recommendations, and simulate a secure purchase sequence instantly.";
+            }
+
+            // Simulate slight AI thinking lag window
+            setTimeout(() => {
+                appendChatMessage(systemResponse, 'bot');
+            }, 550);
         }
 
         // Live Sandbox Workflow Engine States
@@ -688,19 +815,7 @@
             document.getElementById('slideIndicator').innerText = `Slide ${activeSlideIndex} of ${totalSlidesAvailable}`;
         }
 
-        function nextSlide() {
-            if(activeSlideIndex < totalSlidesAvailable) activeSlideIndex++;
-            else activeSlideIndex = 1;
-            updateSlideVisibilityState();
-        }
-
-        function prevSlide() {
-            if(activeSlideIndex > 1) activeSlideIndex--;
-            else activeSlideIndex = totalSlidesAvailable;
-            updateSlideVisibilityState();
-        }
-
-        // Initiate Charts and Variables On Load
+        // Setup chart instances configuration
         window.onload = function() {
             updateRevenueSplitPreview();
             
