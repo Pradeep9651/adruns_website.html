@@ -1,0 +1,614 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdRuns.in - Transit Advertising Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for Market Insights -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandYellow: '#FBC02D',
+                        brandDark: '#111827',
+                        brandGray: '#F3F4F6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+        .slide-step { display: none; }
+        .slide-step.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans flex flex-col min-h-screen">
+
+    <!-- WEBSITE NAVIGATION HEADER -->
+    <header class="bg-brandDark text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-2 cursor-pointer" onclick="navigateTo('home')">
+                <div class="bg-brandYellow text-brandDark p-2 rounded-lg font-black text-xl tracking-wider shadow-inner">A</div>
+                <div>
+                    <span class="text-2xl font-black text-white tracking-tight">AdRuns<span class="text-brandYellow">.in</span></span>
+                    <p class="text-[10px] text-gray-400 uppercase tracking-widest font-semibold">Transit Advertising on the Move</p>
+                </div>
+            </div>
+            <nav class="flex flex-wrap justify-center gap-1 sm:gap-2">
+                <button onclick="navigateTo('home')" class="nav-btn px-4 py-2 rounded-md font-medium text-sm transition-all text-brandYellow bg-gray-800">Home</button>
+                <button onclick="navigateTo('insights')" class="nav-btn px-4 py-2 rounded-md font-medium text-sm transition-all text-gray-300 hover:text-white hover:bg-gray-800">Market Insights</button>
+                <button onclick="navigateTo('calculator')" class="nav-btn px-4 py-2 rounded-md font-medium text-sm transition-all text-gray-300 hover:text-white hover:bg-gray-800">Campaign Planner</button>
+                <button onclick="navigateTo('deck')" class="nav-btn px-4 py-2 rounded-md font-medium text-sm transition-all text-gray-300 hover:text-white hover:bg-gray-800 bg-yellow-600/20 text-yellow-400 border border-yellow-500/30">Investor Presentation</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINERS -->
+    <main class="flex-grow">
+
+        <!-- PAGE 1: HOME PAGE -->
+        <section id="home" class="page-section active animate-fadeIn">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-br from-brandDark via-slate-900 to-indigo-950 text-white py-20 px-4 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fbc02d_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="max-w-5xl mx-auto text-center relative z-10">
+                    <span class="bg-brandYellow/10 text-brandYellow text-xs font-bold px-4 py-1.5 rounded-full border border-brandYellow/30 uppercase tracking-widest">India's Leading Auto-Rickshaw Advertising Platform</span>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold mt-6 mb-6 tracking-tight leading-tight">
+                        We Turn Everyday Rides <br class="hidden sm:inline"><span class="text-brandYellow bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">Into Brand Impressions.</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+                        AdRuns.in helps businesses reach thousands of potential customers daily through high-impact, hyper-targeted auto-rickshaw outdoor media placement.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <button onclick="navigateTo('calculator')" class="bg-brandYellow hover:bg-yellow-500 text-brandDark font-bold px-8 py-4 rounded-xl shadow-lg shadow-brandYellow/20 transition-all text-lg flex items-center justify-center gap-2">
+                            Build Campaign <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </button>
+                        <button onclick="navigateTo('deck')" class="bg-slate-800/80 hover:bg-slate-800 text-white border border-slate-700 font-semibold px-8 py-4 rounded-xl transition-all text-lg flex items-center justify-center gap-2 backdrop-blur-sm">
+                            <i class="fa-solid fa-circle-play text-brandYellow"></i> View Investor Deck
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Value Proposition Row (From Image Context) -->
+            <div class="bg-brandDark border-t border-slate-800 text-white py-10 px-4">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 division-x division-slate-800">
+                    <div class="flex items-start gap-4 p-4">
+                        <div class="text-brandYellow text-3xl mt-1"><i class="fa-solid fa-users"></i></div>
+                        <div>
+                            <h4 class="font-bold text-base text-gray-100">High Daily Reach</h4>
+                            <p class="text-xs text-gray-400 mt-1">Impact thousands of commuters and drivers every single day.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4">
+                        <div class="text-brandYellow text-3xl mt-1"><i class="fa-solid fa-location-crosshairs"></i></div>
+                        <div>
+                            <h4 class="font-bold text-base text-gray-100">Hyperlocal Targeting</h4>
+                            <p class="text-xs text-gray-400 mt-1">Target specific high-traffic commercial routes, tech parks & markets.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4">
+                        <div class="text-brandYellow text-3xl mt-1"><i class="fa-solid fa-wallet"></i></div>
+                        <div>
+                            <h4 class="font-bold text-base text-gray-100">Cost Effective</h4>
+                            <p class="text-xs text-gray-400 mt-1">Maximize outdoor canvas visibility with unmatched industry ROI.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4">
+                        <div class="text-brandYellow text-3xl mt-1"><i class="fa-solid fa-chart-line"></i></div>
+                        <div>
+                            <h4 class="font-bold text-base text-gray-100">Measurable Results</h4>
+                            <p class="text-xs text-gray-400 mt-1">Track campaign execution & metrics with clear dashboard visibility.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4">
+                        <div class="text-brandYellow text-3xl mt-1"><i class="fa-solid fa-shield-check"></i></div>
+                        <div>
+                            <h4 class="font-bold text-base text-gray-100">Trusted & Reliable</h4>
+                            <p class="text-xs text-gray-400 mt-1">Safe, audited, verified, and premium quality physical ad inventory.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workflow / How It Works (Verbatim from Image Flow) -->
+            <div class="py-20 px-4 bg-white">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-16">
+                        <span class="text-sm font-bold text-amber-600 tracking-widest uppercase">Seamless Campaign Delivery</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-brandDark mt-2">How It Works</h2>
+                        <div class="w-16 h-1 bg-brandYellow mx-auto mt-4 rounded-full"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-8 relative">
+                        <!-- Step 1 -->
+                        <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-location-dot"></i></div>
+                            <span class="text-sm font-bold text-amber-600">01. Location</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Choose Location</h3>
+                            <p class="text-sm text-gray-600">Select the specific tier-1/tier-2 city & local micro-areas you want to target.</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-van-shuttle"></i></div>
+                            <span class="text-sm font-bold text-amber-600">02. Fleet</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Pick Inventory</h3>
+                            <p class="text-sm text-gray-600">Choose custom auto-rickshaw volumes based on precise routes, audience & availability.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-palette"></i></div>
+                            <span class="text-sm font-bold text-amber-600">03. Creative</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Share Creative</h3>
+                            <p class="text-sm text-gray-600">We professionally format, design, wrap, and print your high-quality brand ad onto selected autos.</p>
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-tower-broadcast"></i></div>
+                            <span class="text-sm font-bold text-amber-600">04. Deployment</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Go Live</h3>
+                            <p class="text-sm text-gray-600">Your fleet moves dynamically across the city, capturing thousands of views daily.</p>
+                        </div>
+                        <!-- Step 5 -->
+                        <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-square-poll-vertical"></i></div>
+                            <span class="text-sm font-bold text-amber-600">05. Analytics</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Track Metrics</h3>
+                            <p class="text-sm text-gray-600">Receive comprehensive post-campaign insights, execution images, and performance audits.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: 2026 MARKET INSIGHTS -->
+        <section id="insights" class="page-section py-16 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Data-Driven Strategy</span>
+                    <h2 class="text-3xl font-extrabold text-brandDark mt-3">2026 Transit Advertising Market Landscape</h2>
+                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">An analytical deep dive into modern outdoor media spend dynamics, audience tracking, and growth forecasts in India.</p>
+                </div>
+
+                <!-- KPI Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-chart-line-up"></i></div>
+                        <div>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Indian OOH Market Growth</span>
+                            <h3 class="text-2xl font-black text-brandDark mt-0.5">₹4,800+ Cr <span class="text-xs font-medium text-emerald-600">+11% YoY</span></h3>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-eye"></i></div>
+                        <div>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Average Daily Reach/Auto</span>
+                            <h3 class="text-2xl font-black text-brandDark mt-0.5">5,500+ <span class="text-xs font-medium text-blue-600">Impressions</span></h3>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-tags"></i></div>
+                        <div>
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">CPM Direct Cost Advantage</span>
+                            <h3 class="text-2xl font-black text-brandDark mt-0.5">₹18 - ₹25 <span class="text-xs font-medium text-amber-600">vs ₹120+ Digital</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Charts Breakdown -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <h4 class="font-bold text-gray-800 mb-4 text-base"><i class="fa-solid fa-pie-chart text-brandYellow mr-2"></i> Share of Indian OOH Ad Spend (2026 Forecast)</h4>
+                        <div class="h-64 flex justify-center items-center">
+                            <canvas id="marketShareChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <h4 class="font-bold text-gray-800 mb-4 text-base"><i class="fa-solid fa-chart-column text-brandYellow mr-2"></i> Advertising Channel Cost Effectiveness (CPM in INR)</h4>
+                        <div class="h-64 flex justify-center items-center">
+                            <canvas id="cpmComparisonChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategic Takeaways -->
+                <div class="bg-brandDark text-white p-8 rounded-2xl shadow-xl flex flex-col md:flex-row gap-8 items-center">
+                    <div class="md:w-2/3">
+                        <h4 class="text-xl font-bold text-brandYellow mb-2">Why Hyperlocal Auto Hood Media Wins in 2026</h4>
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            With digital ad fatigue and banner blindness reaching record peaks, physical transit media provides unavoidable visual exposure. Auto-rickshaws enter narrow business alleys, wait at high-density stoplights, and cross premium economic hubs—delivering localized visibility that billboards cannot replicate at a fraction of the budget.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3 w-full">
+                        <button onclick="navigateTo('calculator')" class="w-full bg-brandYellow hover:bg-yellow-500 text-brandDark font-bold py-3.5 px-6 rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                            Simulate Your Campaign ROI <i class="fa-solid fa-calculator"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: INTERACTIVE PLANNING CALCULATOR -->
+        <section id="calculator" class="page-section py-16 px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider">Campaign Architect</span>
+                    <h2 class="text-3xl font-extrabold text-brandDark mt-3">Interactive Ad-Spend & Reach Planner</h2>
+                    <p class="text-gray-600 mt-2">Customize parameters below to get instant quotes and predictive impression analytics for your transit campaign.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-md border border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Configurator Left -->
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">1. Select Target Zone</label>
+                            <select id="calcCity" onchange="calculateCampaignMetrics()" class="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-brandYellow">
+                                <option value="delhi">Delhi NCR (Premium Multi-Route Fleet)</option>
+                                <option value="mumbai">Mumbai (High Traffic Western/Eastern Express)</option>
+                                <option value="bangalore">Bengaluru (Tech Park & High-Density Hubs)</option>
+                                <option value="hyderabad">Hyderabad (Hitech City Loop)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="block text-sm font-bold text-gray-700 uppercase tracking-wide">2. Total Auto Inventory Count</label>
+                                <span id="autoCountVal" class="bg-brandDark text-brandYellow text-xs font-black px-3 py-1 rounded-full">50 Autos</span>
+                            </div>
+                            <input type="range" id="calcAutos" min="10" max="500" step="5" value="50" oninput="calculateCampaignMetrics()" class="w-full accent-amber-500 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-xs text-gray-400 font-medium mt-1">
+                                <span>10 vehicles</span>
+                                <span>500 vehicles</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="block text-sm font-bold text-gray-700 uppercase tracking-wide">3. Campaign Duration</label>
+                                <span id="durationVal" class="bg-brandDark text-brandYellow text-xs font-black px-3 py-1 rounded-full">1 Month</span>
+                            </div>
+                            <input type="range" id="calcDuration" min="1" max="6" step="1" value="1" oninput="calculateCampaignMetrics()" class="w-full accent-amber-500 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-xs text-gray-400 font-medium mt-1">
+                                <span>1 Month</span>
+                                <span>6 Months</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metrics Right -->
+                    <div class="bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between shadow-inner">
+                        <div>
+                            <h4 class="text-xs uppercase font-bold tracking-widest text-amber-400 mb-6 border-b border-slate-800 pb-3"><i class="fa-solid fa-chart-pie mr-1"></i> Live Strategic Impact Metrics</h4>
+                            
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div>
+                                    <span class="text-[11px] uppercase text-gray-400 block tracking-wide">Est. Daily Reach</span>
+                                    <p id="metricDailyReach" class="text-xl font-black text-white mt-0.5">275,000</p>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] uppercase text-gray-400 block tracking-wide">Total Campaign Views</span>
+                                    <p id="metricTotalViews" class="text-xl font-black text-brandYellow mt-0.5">8.25 Million</p>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-slate-800 pt-4">
+                                <span class="text-[11px] uppercase text-gray-400 block tracking-wide">Estimated Campaign Investment</span>
+                                <p id="metricTotalCost" class="text-3xl font-black text-white mt-1">₹45,000</p>
+                                <span class="text-[10px] text-emerald-400 mt-1 block font-medium"><i class="fa-solid fa-circle-check"></i> Includes premium printing, heavy-duty execution & reporting</span>
+                            </div>
+                        </div>
+
+                        <button onclick="alert('Thank you! Our Transit Campaign Specialist will contact you within 2 hours with formal artwork proof sheets.')" class="w-full mt-6 bg-brandYellow hover:bg-yellow-500 text-brandDark font-bold py-3.5 rounded-xl shadow-lg shadow-brandYellow/10 transition-all text-sm uppercase tracking-wider font-bold">
+                            Lock & Book Campaign Slot
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: CORPORATE PRESENTATION / SLIDE DECK VIEW -->
+        <section id="deck" class="page-section py-12 px-4 bg-gray-900 text-white">
+            <div class="max-w-6xl mx-auto">
+                
+                <!-- Deck Controls -->
+                <div class="flex flex-col sm:flex-row justify-between items-center bg-gray-800 p-4 rounded-2xl mb-8 border border-gray-700 gap-4">
+                    <div>
+                        <h3 class="font-bold text-lg text-white">AdRuns.in Corporate Deck</h3>
+                        <p class="text-xs text-gray-400">Consulting-grade pitch framework optimized for 2026 fundraising & corporate client acquisition.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="prevSlide()" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 text-white flex items-center justify-center transition-all shadow-md"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span id="slideIndicator" class="font-bold text-sm bg-brandDark px-4 py-2 rounded-xl text-brandYellow border border-gray-700">Slide 1 of 5</span>
+                        <button onclick="nextSlide()" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 text-white flex items-center justify-center transition-all shadow-md"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- SLIDE CANVAS STAGE -->
+                <div class="bg-brandDark rounded-3xl min-h-[500px] border border-gray-800 p-8 sm:p-16 flex flex-col justify-between relative overflow-hidden shadow-2xl">
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-brandYellow/5 rounded-full filter blur-3xl"></div>
+                    
+                    <!-- SLIDE 1: TITLE SLIDE -->
+                    <div class="slide-step active space-y-8 my-auto">
+                        <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 text-brandYellow px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Strategic Pitch Deck</div>
+                        <h1 class="text-4xl sm:text-6xl font-black tracking-tight max-w-4xl leading-tight">
+                            Disrupting Indian Out-Of-Home Media Through <span class="text-brandYellow">Dynamic Hyperlocal Fleets</span>
+                        </h1>
+                        <p class="text-gray-400 text-base sm:text-lg max-w-2xl font-light">
+                            How AdRuns.in bridges the gap between digital attribution tracking and real-world impact using high-reach auto-rickshaw inventories.
+                        </p>
+                        <div class="pt-6 border-t border-gray-800/60 max-w-md grid grid-cols-2 gap-4 text-xs font-semibold text-gray-500">
+                            <div>AUTHOR: <span class="text-white block mt-0.5">AdRuns Strategy Team</span></div>
+                            <div>MARKET TIMING: <span class="text-white block mt-0.5">Q3 2026 Fiscal Frame</span></div>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 2: THE PROBLEM STATEMENT -->
+                    <div class="slide-step space-y-6 my-auto">
+                        <span class="text-xs font-bold text-rose-400 uppercase tracking-widest">Slide 02 // Core Market Pain Points</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">The Outdoor & Digital Dilemma</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                            <div class="bg-gray-800/40 border border-gray-800 p-6 rounded-2xl">
+                                <div class="text-rose-400 text-2xl mb-3"><i class="fa-solid fa-circle-exclamation"></i></div>
+                                <h4 class="font-bold text-lg text-white mb-2">Exorbitant CPM Rates</h4>
+                                <p class="text-sm text-gray-400">Digital programmatic click acquisition prices escalated by over 38% since 2024, squeezing corporate margin frameworks.</p>
+                            </div>
+                            <div class="bg-gray-800/40 border border-gray-800 p-6 rounded-2xl">
+                                <div class="text-rose-400 text-2xl mb-3"><i class="fa-solid fa-eye-slash"></i></div>
+                                <h4 class="font-bold text-lg text-white mb-2">Static Banner Blindness</h4>
+                                <p class="text-sm text-gray-400">Traditional highway billboards require massive quarterly capital but suffer low dwell times from speeding vehicle occupants.</p>
+                            </div>
+                            <div class="bg-gray-800/40 border border-gray-800 p-6 rounded-2xl">
+                                <div class="text-rose-400 text-2xl mb-3"><i class="fa-solid fa-chart-pie-simple"></i></div>
+                                <h4 class="font-bold text-lg text-white mb-2">Zero Micro-Targeting</h4>
+                                <p class="text-sm text-gray-400">Standard OOH platforms fail to capture local commercial alley traffic patterns or localized demographic density hubs.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 3: THE ADRUNS SOLUTION -->
+                    <div class="slide-step space-y-6 my-auto">
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Slide 03 // Value Innovation</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">AdRuns.in Execution Architecture</h2>
+                        <p class="text-gray-300 max-w-2xl text-sm">We orchestrate high-visibility assets turning hundreds of auto hoods into high-recall mobile brand banners.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl">
+                                <div class="text-brandYellow font-black text-2xl">100%</div>
+                                <p class="text-xs text-gray-400 mt-1 font-medium">Audited & Verified Asset Deployments</p>
+                            </div>
+                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl">
+                                <div class="text-brandYellow font-black text-2xl">5,500+</div>
+                                <p class="text-xs text-gray-400 mt-1 font-medium">Daily Impressions Per Hood Unit</p>
+                            </div>
+                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl">
+                                <div class="text-brandYellow font-black text-2xl">1/5th</div>
+                                <p class="text-xs text-gray-400 mt-1 font-medium">Cost of Standard Hoarding Billboards</p>
+                            </div>
+                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl">
+                                <div class="text-brandYellow font-black text-2xl">Premium</div>
+                                <p class="text-xs text-gray-400 mt-1 font-medium">Heavy Vinyl Custom Weatherproof Prints</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 4: EXECUTION PLAYBOOK -->
+                    <div class="slide-step space-y-6 my-auto">
+                        <span class="text-xs font-bold text-brandYellow uppercase tracking-widest">Slide 04 // Operational Flow</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">5-Step Deployment Lifecycle</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-xs mt-4">
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1 text-sm">1. Target</b> Geo-fence and isolate key urban nodes & micro markets.</div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1 text-sm">2. Scale</b> Provision and cluster ideal auto counts for necessary reach.</div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1 text-sm">3. Wrap</b> Execute full panel high-resolution heavy duty graphic wraps.</div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1 text-sm">4. Stream</b> Launch mobile assets directly into prime traffic congestion.</div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1 text-sm">5. Verify</b> Delivery of proof sheets, performance dashboards, and analytics.</div>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 5: UNIT ECONOMICS & GROWTH -->
+                    <div class="slide-step space-y-6 my-auto">
+                        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Slide 05 // Financial & Scale Trajectory</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Scale Targets & Capital Efficiency</h2>
+                        <div class="bg-gray-800/30 p-6 rounded-2xl border border-gray-800 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                            <div>
+                                <span class="text-xs uppercase text-gray-400 tracking-wide">Phase 1 (Current)</span>
+                                <p class="text-2xl font-black text-white mt-1">3 Cities Active</p>
+                                <p class="text-[11px] text-gray-500 mt-1">Focusing on Tier 1 Density</p>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase text-gray-400 tracking-wide">Phase 2 Target</span>
+                                <p class="text-2xl font-black text-brandYellow mt-1">15+ Major Cities</p>
+                                <p class="text-[11px] text-gray-500 mt-1">Pan-India Integration Pipeline</p>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase text-gray-400 tracking-wide">Projected Annual Runs</span>
+                                <p class="text-2xl font-black text-emerald-400 mt-1">₹25 Cr+ Gross</p>
+                                <p class="text-[11px] text-gray-500 mt-1">Driven by low asset-light cost</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide Footer Branding -->
+                    <div class="flex justify-between items-center border-t border-gray-800/80 pt-6 mt-8 text-xs text-gray-500">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-white tracking-tight">AdRuns<span class="text-brandYellow">.in</span></span>
+                        </div>
+                        <div>Strategic Outdoor Growth Strategy &bull; Confidential</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER WITH QUICK PUSH DIRECTIONS -->
+    <footer class="bg-brandDark text-gray-400 text-xs py-8 border-t border-slate-800 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <p class="font-bold text-white text-sm mb-1">AdRuns.in Transit Advertising Framework</p>
+                <p>&copy; 2026 AdRuns Media. Developed with 2026 Indian OOH Strategy Insights.</p>
+            </div>
+            
+            <!-- Quick instructions box so the user can easily review how to push from their phone -->
+            <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-left max-w-md w-full">
+                <p class="text-amber-400 font-bold mb-1"><i class="fa-brands fa-github"></i> Mobile GitHub Push Reference Steps:</p>
+                <ol class="list-decimal list-inside space-y-1 text-[11px] text-gray-300">
+                    <li>Open <b>GitHub.com</b> inside your mobile phone browser (or GitHub app).</li>
+                    <li>Create a new Public Repository named <code class="text-white bg-slate-800 px-1 rounded">adruns-live</code>.</li>
+                    <li>Choose <b>"Upload an existing file"</b> inside the code view.</li>
+                    <li>Select this downloaded file and rename it to <code class="text-brandYellow font-mono font-bold">index.html</code>.</li>
+                    <li>Go to repository <b>Settings -> Pages</b>, enable the <code class="text-white">main</code> branch, and hit Save!</li>
+                </ol>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS CODE -->
+    <script>
+        // Page Navigation Logic
+        function navigateTo(pageId) {
+            // Update active content layout
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+
+            // Update header menu highlighting styles
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-brandYellow', 'bg-gray-800');
+                btn.classList.add('text-gray-300', 'hover:text-white', 'hover:bg-gray-800');
+            });
+            
+            // Re-bind click event reference color highlights
+            const targetBtn = Array.from(document.querySelectorAll('.nav-btn')).find(btn => btn.getAttribute('onclick').includes(pageId));
+            if(targetBtn) {
+                targetBtn.classList.remove('text-gray-300', 'hover:text-white', 'hover:bg-gray-800');
+                targetBtn.classList.add('text-brandYellow', 'bg-gray-800');
+            }
+
+            // Scroll window smooth container focus
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Live Metric Planning Calculator Formula Engine
+        function calculateCampaignMetrics() {
+            const city = document.getElementById('calcCity').value;
+            const autos = parseInt(document.getElementById('calcAutos').value);
+            const months = parseInt(document.getElementById('calcDuration').value);
+
+            // Update UI Slider Text Labels dynamically
+            document.getElementById('autoCountVal').innerText = `${autos} Autos`;
+            document.getElementById('durationVal').innerText = `${months} ${months === 1 ? 'Month' : 'Months'}`;
+
+            // Define base financial metrics per auto wrap bundle per month
+            let ratePerAutoPerMonth = 900; // Base INR rate
+            let reachFactorMultiplier = 5500; // Average daily visual impressions per vehicle from contextual insights
+
+            if (city === 'delhi') { ratePerAutoPerMonth = 950; reachFactorMultiplier = 6000; }
+            else if (city === 'mumbai') { ratePerAutoPerMonth = 1100; reachFactorMultiplier = 6800; }
+            else if (city === 'bangalore') { ratePerAutoPerMonth = 1000; reachFactorMultiplier = 5700; }
+            else if (city === 'hyderabad') { ratePerAutoPerMonth = 900; reachFactorMultiplier = 5200; }
+
+            // Math execution
+            const totalCostValue = autos * ratePerAutoPerMonth * months;
+            const estimatedDailyReachValue = autos * reachFactorMultiplier;
+            const absoluteTotalViewsValue = estimatedDailyReachValue * 30 * months;
+
+            // Render text variables inside HTML elements
+            document.getElementById('metricDailyReach').innerText = estimatedDailyReachValue.toLocaleString('en-IN');
+            document.getElementById('metricTotalViews').innerText = absoluteTotalViewsValue >= 10000000 
+                ? `${(absoluteTotalViewsValue / 10000000).toFixed(2)} Cr` 
+                : `${(absoluteTotalViewsValue / 1000000).toFixed(2)} Million`;
+            document.getElementById('metricTotalCost').innerText = `₹${totalCostValue.toLocaleString('en-IN')}`;
+        }
+
+        // Slides Deck Carousel Pagination Tracking Script
+        let activeSlideIndex = 1;
+        const totalSlidesAvailable = 5;
+
+        function updateSlideVisibilityState() {
+            document.querySelectorAll('.slide-step').forEach((slide, idx) => {
+                if((idx + 1) === activeSlideIndex) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            document.getElementById('slideIndicator').innerText = `Slide ${activeSlideIndex} of ${totalSlidesAvailable}`;
+        }
+
+        function nextSlide() {
+            if(activeSlideIndex < totalSlidesAvailable) {
+                activeSlideIndex++;
+            } else {
+                activeSlideIndex = 1; // loop back to initial title slide
+            }
+            updateSlideVisibilityState();
+        }
+
+        function prevSlide() {
+            if(activeSlideIndex > 1) {
+                activeSlideIndex--;
+            } else {
+                activeSlideIndex = totalSlidesAvailable; // loop back to final financial summary slide
+            }
+            updateSlideVisibilityState();
+        }
+
+        // Global Chart Initializer on Script Window Load
+        window.onload = function() {
+            calculateCampaignMetrics();
+
+            // Chart 1: Market Share allocation
+            constctxShare = document.getElementById('marketShareChart').getContext('2d');
+            new Chart(ctxShare, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Traditional Billboards', 'Auto-Rickshaw & Transit', 'Mall/Airport Ambient', 'Digital Screens (DOOH)'],
+                    datasets: [{
+                        data: [42, 28, 18, 12],
+                        backgroundColor: ['#374151', '#FBC02D', '#9CA3AF', '#6B7280'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { color: '#374151', font: { size: 11 } } } }
+                }
+            });
+
+            // Chart 2: Direct Cost Channel Efficiency Analytics (CPM comparison)
+            const ctxCpm = document.getElementById('cpmComparisonChart').getContext('2d');
+            new Chart(ctxCpm, {
+                type: 'bar',
+                data: {
+                    labels: ['Transit Media (AdRuns)', 'Social Media Video', 'Google Search Click', 'Premium Billboards'],
+                    datasets: [{
+                        label: 'Estimated CPM Cost (INR)',
+                        data: [22, 140, 210, 180],
+                        backgroundColor: ['#FBC02D', '#4B5563', '#4B5563', '#4B5563'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { ticks: { color: '#374151' }, grid: { color: '#E5E7EB' } },
+                        x: { ticks: { color: '#374151' }, grid: { display: false } }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
