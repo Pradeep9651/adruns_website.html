@@ -33,21 +33,47 @@
 <body class="bg-gray-50 text-gray-900 font-sans flex flex-col min-h-screen">
 
     <!-- WEBSITE NAVIGATION HEADER -->
-    <header class="bg-brandDark text-white sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center space-x-2 cursor-pointer" onclick="navigateTo('home')">
-                <div class="bg-brandYellow text-brandDark p-2 rounded-lg font-black text-xl tracking-wider shadow-inner">A</div>
-                <div>
-                    <span class="text-2xl font-black text-white tracking-tight">AdRuns<span class="text-brandYellow">.in</span></span>
-                    <p class="text-[10px] text-gray-400 uppercase tracking-widest font-semibold">Transit Advertising on the Move</p>
+    <header class="bg-brandDark text-white sticky top-0 z-50 shadow-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col lg:flex-row justify-between items-center gap-4">
+            
+            <!-- LEFT SIDE: Logo (Recreated from IMG_20260617_195312.png), Title & Inline Core Page Buttons -->
+            <div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                    <!-- Custom SVG representation of the specific 'A' Swoosh Road logo from IMG_20260617_195312.png -->
+                    <div class="w-10 h-10 relative flex-shrink-0 bg-white rounded-lg p-1 shadow-md">
+                        <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Dark Main Structural 'A' shape -->
+                            <path d="M50 10 L15 85 L33 85 L42 62 L64 62 L50 10 Z" fill="#111827"/>
+                            <path d="M50 10 L85 85 L67 85 L58 62 L50 10 Z" fill="#111827"/>
+                            <!-- Yellow Dynamic Swoosh / Curved Road carving across the letter -->
+                            <path d="M15 90 C 40 75, 65 55, 90 55 C 70 58, 45 75, 25 95 Z" fill="#FBC02D"/>
+                            <!-- White road separation divider lines -->
+                            <path d="M32 81 L36 78 M46 72 L50 69 M59 64 L63 62" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="text-xl font-black text-white tracking-tight">AdRuns<span class="text-brandYellow">.in</span></span>
+                        <p class="text-[9px] text-gray-400 uppercase tracking-widest font-bold whitespace-nowrap">Transit Advertising on the Move</p>
+                    </div>
+                </div>
+
+                <!-- Inline Action Layout Links placed directly in front of the Brand Identity -->
+                <div class="flex items-center gap-1.5 bg-gray-900 p-1 rounded-xl border border-gray-800 w-full sm:w-auto justify-center sm:justify-start">
+                    <button onclick="navigateTo('home')" class="nav-btn px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all text-brandYellow bg-gray-800">Home</button>
+                    <button onclick="navigateTo('insights')" class="nav-btn px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all text-gray-400 hover:text-white hover:bg-gray-800">Market Insights</button>
                 </div>
             </div>
-            <nav class="flex flex-wrap justify-center gap-1 sm:gap-2">
-                <button onclick="navigateTo('home')" class="nav-btn px-4 py-2 rounded-md font-medium text-sm transition-all text-brandYellow bg-gray-800">Home</button>
-                <button onclick="navigateTo('insights')" class="nav-btn px-4 py-2 rounded-md font-medium text-sm transition-all text-gray-300 hover:text-white hover:bg-gray-800">Market Insights</button>
-                <button onclick="navigateTo('calculator')" class="nav-btn px-4 py-2 rounded-md font-medium text-sm transition-all text-gray-300 hover:text-white hover:bg-gray-800">Campaign Planner</button>
-                <button onclick="navigateTo('deck')" class="nav-btn px-4 py-2 rounded-md font-medium text-sm transition-all text-gray-300 hover:text-white hover:bg-gray-800 bg-yellow-600/20 text-yellow-400 border border-yellow-500/30">Investor Presentation</button>
-            </nav>
+
+            <!-- RIGHT SIDE: Utility Tools, Pitch Deck and Direct Email Contact Button Anchor -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-end gap-3 w-full lg:w-auto">
+                <button onclick="navigateTo('calculator')" class="nav-btn px-4 py-2 rounded-xl font-semibold text-xs transition-all text-gray-300 hover:text-white hover:bg-gray-800"><i class="fa-solid fa-sliders mr-1.5 text-brandYellow"></i>Campaign Planner</button>
+                <button onclick="navigateTo('deck')" class="nav-btn px-4 py-2 rounded-xl font-bold text-xs transition-all text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 hover:bg-yellow-500/20">Investor Presentation</button>
+                
+                <!-- New Mailto Direct Contact Action Button -->
+                <a href="mailto:adruns1230@gmail.com" class="bg-brandYellow hover:bg-yellow-500 text-brandDark font-black text-xs px-4 py-2 rounded-xl shadow-md transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-envelope"></i> Contact Us
+                </a>
+            </div>
         </div>
     </header>
 
@@ -78,7 +104,7 @@
                 </div>
             </div>
 
-            <!-- Value Proposition Row (From Image Context) -->
+            <!-- Value Proposition Row -->
             <div class="bg-brandDark border-t border-slate-800 text-white py-10 px-4">
                 <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 division-x division-slate-800">
                     <div class="flex items-start gap-4 p-4">
@@ -119,7 +145,7 @@
                 </div>
             </div>
 
-            <!-- Workflow / How It Works (Verbatim from Image Flow) -->
+            <!-- Workflow / How It Works -->
             <div class="py-20 px-4 bg-white">
                 <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-16">
@@ -128,47 +154,42 @@
                         <div class="w-16 h-1 bg-brandYellow mx-auto mt-4 rounded-full"></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-5 gap-8 relative">
-                        <!-- Step 1 -->
                         <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
                             <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-location-dot"></i></div>
                             <span class="text-sm font-bold text-amber-600">01. Location</span>
                             <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Choose Location</h3>
-                            <p class="text-sm text-gray-600">Select the specific tier-1/tier-2 city & local micro-areas you want to target.</p>
+                            <p class="text-sm text-gray-600">Select the specific city & local areas you want to target.</p>
                         </div>
-                        <!-- Step 2 -->
                         <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
                             <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-van-shuttle"></i></div>
                             <span class="text-sm font-bold text-amber-600">02. Fleet</span>
                             <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Pick Inventory</h3>
-                            <p class="text-sm text-gray-600">Choose custom auto-rickshaw volumes based on precise routes, audience & availability.</p>
+                            <p class="text-sm text-gray-600">Choose custom auto-rickshaw volumes based on routes, audience & availability.</p>
                         </div>
-                        <!-- Step 3 -->
                         <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
                             <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-palette"></i></div>
                             <span class="text-sm font-bold text-amber-600">03. Creative</span>
                             <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Share Creative</h3>
-                            <p class="text-sm text-gray-600">We professionally format, design, wrap, and print your high-quality brand ad onto selected autos.</p>
+                            <p class="text-sm text-gray-600">We professionally design & wrap your custom advertisement on selected autos.</p>
                         </div>
-                        <!-- Step 4 -->
                         <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
                             <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-tower-broadcast"></i></div>
                             <span class="text-sm font-bold text-amber-600">04. Deployment</span>
                             <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Go Live</h3>
-                            <p class="text-sm text-gray-600">Your fleet moves dynamically across the city, capturing thousands of views daily.</p>
+                            <p class="text-sm text-gray-600">Your brand moves dynamically across the city, seen by thousands every day.</p>
                         </div>
-                        <!-- Step 5 -->
                         <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
                             <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-square-poll-vertical"></i></div>
                             <span class="text-sm font-bold text-amber-600">05. Analytics</span>
                             <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Track Metrics</h3>
-                            <p class="text-sm text-gray-600">Receive comprehensive post-campaign insights, execution images, and performance audits.</p>
+                            <p class="text-sm text-gray-600">Get real insights, execution images, route verification, and performance audits.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PAGE 2: 2026 MARKET INSIGHTS -->
+        <!-- PAGE 2: MARKET INSIGHTS -->
         <section id="insights" class="page-section py-16 px-4">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
@@ -217,25 +238,10 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Strategic Takeaways -->
-                <div class="bg-brandDark text-white p-8 rounded-2xl shadow-xl flex flex-col md:flex-row gap-8 items-center">
-                    <div class="md:w-2/3">
-                        <h4 class="text-xl font-bold text-brandYellow mb-2">Why Hyperlocal Auto Hood Media Wins in 2026</h4>
-                        <p class="text-sm text-gray-300 leading-relaxed">
-                            With digital ad fatigue and banner blindness reaching record peaks, physical transit media provides unavoidable visual exposure. Auto-rickshaws enter narrow business alleys, wait at high-density stoplights, and cross premium economic hubs—delivering localized visibility that billboards cannot replicate at a fraction of the budget.
-                        </p>
-                    </div>
-                    <div class="md:w-1/3 w-full">
-                        <button onclick="navigateTo('calculator')" class="w-full bg-brandYellow hover:bg-yellow-500 text-brandDark font-bold py-3.5 px-6 rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
-                            Simulate Your Campaign ROI <i class="fa-solid fa-calculator"></i>
-                        </button>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <!-- PAGE 3: INTERACTIVE PLANNING CALCULATOR -->
+        <!-- PAGE 3: CAMPAIGN PLANNER CALCULATOR -->
         <section id="calculator" class="page-section py-16 px-4">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-12">
@@ -263,10 +269,6 @@
                                 <span id="autoCountVal" class="bg-brandDark text-brandYellow text-xs font-black px-3 py-1 rounded-full">50 Autos</span>
                             </div>
                             <input type="range" id="calcAutos" min="10" max="500" step="5" value="50" oninput="calculateCampaignMetrics()" class="w-full accent-amber-500 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                            <div class="flex justify-between text-xs text-gray-400 font-medium mt-1">
-                                <span>10 vehicles</span>
-                                <span>500 vehicles</span>
-                            </div>
                         </div>
 
                         <div>
@@ -275,10 +277,6 @@
                                 <span id="durationVal" class="bg-brandDark text-brandYellow text-xs font-black px-3 py-1 rounded-full">1 Month</span>
                             </div>
                             <input type="range" id="calcDuration" min="1" max="6" step="1" value="1" oninput="calculateCampaignMetrics()" class="w-full accent-amber-500 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                            <div class="flex justify-between text-xs text-gray-400 font-medium mt-1">
-                                <span>1 Month</span>
-                                <span>6 Months</span>
-                            </div>
                         </div>
                     </div>
 
@@ -286,7 +284,6 @@
                     <div class="bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between shadow-inner">
                         <div>
                             <h4 class="text-xs uppercase font-bold tracking-widest text-amber-400 mb-6 border-b border-slate-800 pb-3"><i class="fa-solid fa-chart-pie mr-1"></i> Live Strategic Impact Metrics</h4>
-                            
                             <div class="grid grid-cols-2 gap-4 mb-6">
                                 <div>
                                     <span class="text-[11px] uppercase text-gray-400 block tracking-wide">Est. Daily Reach</span>
@@ -297,230 +294,163 @@
                                     <p id="metricTotalViews" class="text-xl font-black text-brandYellow mt-0.5">8.25 Million</p>
                                 </div>
                             </div>
-
                             <div class="border-t border-slate-800 pt-4">
                                 <span class="text-[11px] uppercase text-gray-400 block tracking-wide">Estimated Campaign Investment</span>
                                 <p id="metricTotalCost" class="text-3xl font-black text-white mt-1">₹45,000</p>
-                                <span class="text-[10px] text-emerald-400 mt-1 block font-medium"><i class="fa-solid fa-circle-check"></i> Includes premium printing, heavy-duty execution & reporting</span>
                             </div>
                         </div>
-
-                        <button onclick="alert('Thank you! Our Transit Campaign Specialist will contact you within 2 hours with formal artwork proof sheets.')" class="w-full mt-6 bg-brandYellow hover:bg-yellow-500 text-brandDark font-bold py-3.5 rounded-xl shadow-lg shadow-brandYellow/10 transition-all text-sm uppercase tracking-wider font-bold">
-                            Lock & Book Campaign Slot
-                        </button>
+                        <a href="mailto:adruns1230@gmail.com?subject=New Campaign Booking Request" class="w-full text-center mt-6 bg-brandYellow hover:bg-yellow-500 text-brandDark font-bold py-3.5 rounded-xl shadow-lg transition-all text-sm uppercase tracking-wider block">
+                            Submit Planner via Email
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PAGE 4: CORPORATE PRESENTATION / SLIDE DECK VIEW -->
+        <!-- PAGE 4: INVESTOR PRESENTATION -->
         <section id="deck" class="page-section py-12 px-4 bg-gray-900 text-white">
             <div class="max-w-6xl mx-auto">
-                
-                <!-- Deck Controls -->
                 <div class="flex flex-col sm:flex-row justify-between items-center bg-gray-800 p-4 rounded-2xl mb-8 border border-gray-700 gap-4">
                     <div>
                         <h3 class="font-bold text-lg text-white">AdRuns.in Corporate Deck</h3>
-                        <p class="text-xs text-gray-400">Consulting-grade pitch framework optimized for 2026 fundraising & corporate client acquisition.</p>
+                        <p class="text-xs text-gray-400">Consulting-grade pitch framework optimized for corporate client acquisition.</p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <button onclick="prevSlide()" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 text-white flex items-center justify-center transition-all shadow-md"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button onclick="prevSlide()" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 text-white flex items-center justify-center transition-all"><i class="fa-solid fa-chevron-left"></i></button>
                         <span id="slideIndicator" class="font-bold text-sm bg-brandDark px-4 py-2 rounded-xl text-brandYellow border border-gray-700">Slide 1 of 5</span>
-                        <button onclick="nextSlide()" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 text-white flex items-center justify-center transition-all shadow-md"><i class="fa-solid fa-chevron-right"></i></button>
+                        <button onclick="nextSlide()" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 text-white flex items-center justify-center transition-all"><i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </div>
 
                 <!-- SLIDE CANVAS STAGE -->
                 <div class="bg-brandDark rounded-3xl min-h-[500px] border border-gray-800 p-8 sm:p-16 flex flex-col justify-between relative overflow-hidden shadow-2xl">
-                    <div class="absolute top-0 right-0 w-96 h-96 bg-brandYellow/5 rounded-full filter blur-3xl"></div>
-                    
-                    <!-- SLIDE 1: TITLE SLIDE -->
+                    <!-- SLIDE 1 -->
                     <div class="slide-step active space-y-8 my-auto">
                         <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 text-brandYellow px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Strategic Pitch Deck</div>
                         <h1 class="text-4xl sm:text-6xl font-black tracking-tight max-w-4xl leading-tight">
                             Disrupting Indian Out-Of-Home Media Through <span class="text-brandYellow">Dynamic Hyperlocal Fleets</span>
                         </h1>
                         <p class="text-gray-400 text-base sm:text-lg max-w-2xl font-light">
-                            How AdRuns.in bridges the gap between digital attribution tracking and real-world impact using high-reach auto-rickshaw inventories.
+                            How AdRuns.in bridges the gap between digital tracking and real-world impact using high-reach auto-rickshaw inventories.
                         </p>
-                        <div class="pt-6 border-t border-gray-800/60 max-w-md grid grid-cols-2 gap-4 text-xs font-semibold text-gray-500">
-                            <div>AUTHOR: <span class="text-white block mt-0.5">AdRuns Strategy Team</span></div>
-                            <div>MARKET TIMING: <span class="text-white block mt-0.5">Q3 2026 Fiscal Frame</span></div>
-                        </div>
                     </div>
 
-                    <!-- SLIDE 2: THE PROBLEM STATEMENT -->
+                    <!-- SLIDE 2 -->
                     <div class="slide-step space-y-6 my-auto">
                         <span class="text-xs font-bold text-rose-400 uppercase tracking-widest">Slide 02 // Core Market Pain Points</span>
                         <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">The Outdoor & Digital Dilemma</h2>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                             <div class="bg-gray-800/40 border border-gray-800 p-6 rounded-2xl">
-                                <div class="text-rose-400 text-2xl mb-3"><i class="fa-solid fa-circle-exclamation"></i></div>
                                 <h4 class="font-bold text-lg text-white mb-2">Exorbitant CPM Rates</h4>
-                                <p class="text-sm text-gray-400">Digital programmatic click acquisition prices escalated by over 38% since 2024, squeezing corporate margin frameworks.</p>
+                                <p class="text-sm text-gray-400">Digital programmatic click acquisition prices escalated significantly, squeezing corporate margin frameworks.</p>
                             </div>
                             <div class="bg-gray-800/40 border border-gray-800 p-6 rounded-2xl">
-                                <div class="text-rose-400 text-2xl mb-3"><i class="fa-solid fa-eye-slash"></i></div>
                                 <h4 class="font-bold text-lg text-white mb-2">Static Banner Blindness</h4>
-                                <p class="text-sm text-gray-400">Traditional highway billboards require massive quarterly capital but suffer low dwell times from speeding vehicle occupants.</p>
+                                <p class="text-sm text-gray-400">Traditional billboards require massive capital but suffer low dwell times from speeding vehicle occupants.</p>
                             </div>
                             <div class="bg-gray-800/40 border border-gray-800 p-6 rounded-2xl">
-                                <div class="text-rose-400 text-2xl mb-3"><i class="fa-solid fa-chart-pie-simple"></i></div>
                                 <h4 class="font-bold text-lg text-white mb-2">Zero Micro-Targeting</h4>
-                                <p class="text-sm text-gray-400">Standard OOH platforms fail to capture local commercial alley traffic patterns or localized demographic density hubs.</p>
+                                <p class="text-sm text-gray-400">Standard platforms fail to capture local commercial alley traffic patterns or localized demographic density hubs.</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- SLIDE 3: THE ADRUNS SOLUTION -->
+                    <!-- SLIDE 3 -->
                     <div class="slide-step space-y-6 my-auto">
                         <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Slide 03 // Value Innovation</span>
                         <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">AdRuns.in Execution Architecture</h2>
-                        <p class="text-gray-300 max-w-2xl text-sm">We orchestrate high-visibility assets turning hundreds of auto hoods into high-recall mobile brand banners.</p>
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-4">
-                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl">
-                                <div class="text-brandYellow font-black text-2xl">100%</div>
-                                <p class="text-xs text-gray-400 mt-1 font-medium">Audited & Verified Asset Deployments</p>
-                            </div>
-                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl">
-                                <div class="text-brandYellow font-black text-2xl">5,500+</div>
-                                <p class="text-xs text-gray-400 mt-1 font-medium">Daily Impressions Per Hood Unit</p>
-                            </div>
-                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl">
-                                <div class="text-brandYellow font-black text-2xl">1/5th</div>
-                                <p class="text-xs text-gray-400 mt-1 font-medium">Cost of Standard Hoarding Billboards</p>
-                            </div>
-                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl">
-                                <div class="text-brandYellow font-black text-2xl">Premium</div>
-                                <p class="text-xs text-gray-400 mt-1 font-medium">Heavy Vinyl Custom Weatherproof Prints</p>
-                            </div>
+                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl"><div class="text-brandYellow font-black text-2xl">100%</div><p class="text-xs text-gray-400 mt-1">Audited Deployments</p></div>
+                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl"><div class="text-brandYellow font-black text-2xl">5,500+</div><p class="text-xs text-gray-400 mt-1">Daily Views / Auto</p></div>
+                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl"><div class="text-brandYellow font-black text-2xl">1/5th</div><p class="text-xs text-gray-400 mt-1">Cost of Billboards</p></div>
+                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl"><div class="text-brandYellow font-black text-2xl">Premium</div><p class="text-xs text-gray-400 mt-1">Weatherproof Vinyl</p></div>
                         </div>
                     </div>
 
-                    <!-- SLIDE 4: EXECUTION PLAYBOOK -->
+                    <!-- SLIDE 4 -->
                     <div class="slide-step space-y-6 my-auto">
-                        <span class="text-xs font-bold text-brandYellow uppercase tracking-widest">Slide 04 // Operational Flow</span>
+                        <span class="text-xs font-bold text-brandYellow uppercase tracking-widest">Slide 04 // Operational Playbook</span>
                         <h2 class="text-3xl sm:text-4xl font-extrabold text-white">5-Step Deployment Lifecycle</h2>
                         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-xs mt-4">
-                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1 text-sm">1. Target</b> Geo-fence and isolate key urban nodes & micro markets.</div>
-                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1 text-sm">2. Scale</b> Provision and cluster ideal auto counts for necessary reach.</div>
-                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1 text-sm">3. Wrap</b> Execute full panel high-resolution heavy duty graphic wraps.</div>
-                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1 text-sm">4. Stream</b> Launch mobile assets directly into prime traffic congestion.</div>
-                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1 text-sm">5. Verify</b> Delivery of proof sheets, performance dashboards, and analytics.</div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1">1. Target</b> Geo-fence and isolate key urban nodes.</div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1">2. Scale</b> Cluster ideal auto counts for necessary reach.</div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1">3. Wrap</b> Execute full panel high-resolution graphic wraps.</div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1">4. Stream</b> Launch mobile assets into prime traffic areas.</div>
+                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1">5. Verify</b> Delivery of proof sheets & analytics.</div>
                         </div>
                     </div>
 
-                    <!-- SLIDE 5: UNIT ECONOMICS & GROWTH -->
+                    <!-- SLIDE 5 -->
                     <div class="slide-step space-y-6 my-auto">
-                        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Slide 05 // Financial & Scale Trajectory</span>
+                        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Slide 05 // Scale Trajectory</span>
                         <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Scale Targets & Capital Efficiency</h2>
                         <div class="bg-gray-800/30 p-6 rounded-2xl border border-gray-800 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-                            <div>
-                                <span class="text-xs uppercase text-gray-400 tracking-wide">Phase 1 (Current)</span>
-                                <p class="text-2xl font-black text-white mt-1">3 Cities Active</p>
-                                <p class="text-[11px] text-gray-500 mt-1">Focusing on Tier 1 Density</p>
-                            </div>
-                            <div>
-                                <span class="text-xs uppercase text-gray-400 tracking-wide">Phase 2 Target</span>
-                                <p class="text-2xl font-black text-brandYellow mt-1">15+ Major Cities</p>
-                                <p class="text-[11px] text-gray-500 mt-1">Pan-India Integration Pipeline</p>
-                            </div>
-                            <div>
-                                <span class="text-xs uppercase text-gray-400 tracking-wide">Projected Annual Runs</span>
-                                <p class="text-2xl font-black text-emerald-400 mt-1">₹25 Cr+ Gross</p>
-                                <p class="text-[11px] text-gray-500 mt-1">Driven by low asset-light cost</p>
-                            </div>
+                            <div><span class="text-xs uppercase text-gray-400">Phase 1</span><p class="text-2xl font-black text-white mt-1">3 Cities Active</p></div>
+                            <div><span class="text-xs uppercase text-gray-400">Phase 2 Target</span><p class="text-2xl font-black text-brandYellow mt-1">15+ Major Cities</p></div>
+                            <div><span class="text-xs uppercase text-gray-400">Projected Run Rate</span><p class="text-2xl font-black text-emerald-400 mt-1">₹25 Cr+ Gross</p></div>
                         </div>
                     </div>
 
-                    <!-- Slide Footer Branding -->
+                    <!-- Slide Footer -->
                     <div class="flex justify-between items-center border-t border-gray-800/80 pt-6 mt-8 text-xs text-gray-500">
-                        <div class="flex items-center gap-2">
-                            <span class="font-bold text-white tracking-tight">AdRuns<span class="text-brandYellow">.in</span></span>
-                        </div>
-                        <div>Strategic Outdoor Growth Strategy &bull; Confidential</div>
+                        <div>AdRuns.in Corporate Presentation</div>
+                        <div>Confidential</div>
                     </div>
                 </div>
-
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER WITH QUICK PUSH DIRECTIONS -->
+    <!-- FOOTER -->
     <footer class="bg-brandDark text-gray-400 text-xs py-8 border-t border-slate-800 px-4">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div>
                 <p class="font-bold text-white text-sm mb-1">AdRuns.in Transit Advertising Framework</p>
-                <p>&copy; 2026 AdRuns Media. Developed with 2026 Indian OOH Strategy Insights.</p>
-            </div>
-            
-            <!-- Quick instructions box so the user can easily review how to push from their phone -->
-            <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-left max-w-md w-full">
-                <p class="text-amber-400 font-bold mb-1"><i class="fa-brands fa-github"></i> Mobile GitHub Push Reference Steps:</p>
-                <ol class="list-decimal list-inside space-y-1 text-[11px] text-gray-300">
-                    <li>Open <b>GitHub.com</b> inside your mobile phone browser (or GitHub app).</li>
-                    <li>Create a new Public Repository named <code class="text-white bg-slate-800 px-1 rounded">adruns-live</code>.</li>
-                    <li>Choose <b>"Upload an existing file"</b> inside the code view.</li>
-                    <li>Select this downloaded file and rename it to <code class="text-brandYellow font-mono font-bold">index.html</code>.</li>
-                    <li>Go to repository <b>Settings -> Pages</b>, enable the <code class="text-white">main</code> branch, and hit Save!</li>
-                </ol>
+                <p>&copy; 2026 AdRuns Media. All Rights Reserved. Hub Support: <a href="mailto:adruns1230@gmail.com" class="text-brandYellow underline">adruns1230@gmail.com</a></p>
             </div>
         </div>
     </footer>
 
-    <!-- INTERACTIVE SCRIPTS CODE -->
+    <!-- INTERACTIVE ENGINE SCRIPTS -->
     <script>
-        // Page Navigation Logic
         function navigateTo(pageId) {
-            // Update active content layout
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
-            });
+            document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
 
-            // Update header menu highlighting styles
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('text-brandYellow', 'bg-gray-800');
-                btn.classList.add('text-gray-300', 'hover:text-white', 'hover:bg-gray-800');
+                btn.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-gray-800');
             });
             
-            // Re-bind click event reference color highlights
             const targetBtn = Array.from(document.querySelectorAll('.nav-btn')).find(btn => btn.getAttribute('onclick').includes(pageId));
             if(targetBtn) {
-                targetBtn.classList.remove('text-gray-300', 'hover:text-white', 'hover:bg-gray-800');
+                targetBtn.classList.remove('text-gray-400', 'hover:text-white', 'hover:bg-gray-800');
                 targetBtn.classList.add('text-brandYellow', 'bg-gray-800');
             }
-
-            // Scroll window smooth container focus
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Live Metric Planning Calculator Formula Engine
         function calculateCampaignMetrics() {
             const city = document.getElementById('calcCity').value;
             const autos = parseInt(document.getElementById('calcAutos').value);
             const months = parseInt(document.getElementById('calcDuration').value);
 
-            // Update UI Slider Text Labels dynamically
             document.getElementById('autoCountVal').innerText = `${autos} Autos`;
             document.getElementById('durationVal').innerText = `${months} ${months === 1 ? 'Month' : 'Months'}`;
 
-            // Define base financial metrics per auto wrap bundle per month
-            let ratePerAutoPerMonth = 900; // Base INR rate
-            let reachFactorMultiplier = 5500; // Average daily visual impressions per vehicle from contextual insights
+            let ratePerAutoPerMonth = 900;
+            let reachFactorMultiplier = 5500;
 
             if (city === 'delhi') { ratePerAutoPerMonth = 950; reachFactorMultiplier = 6000; }
             else if (city === 'mumbai') { ratePerAutoPerMonth = 1100; reachFactorMultiplier = 6800; }
             else if (city === 'bangalore') { ratePerAutoPerMonth = 1000; reachFactorMultiplier = 5700; }
             else if (city === 'hyderabad') { ratePerAutoPerMonth = 900; reachFactorMultiplier = 5200; }
 
-            // Math execution
             const totalCostValue = autos * ratePerAutoPerMonth * months;
             const estimatedDailyReachValue = autos * reachFactorMultiplier;
             const absoluteTotalViewsValue = estimatedDailyReachValue * 30 * months;
 
-            // Render text variables inside HTML elements
             document.getElementById('metricDailyReach').innerText = estimatedDailyReachValue.toLocaleString('en-IN');
             document.getElementById('metricTotalViews').innerText = absoluteTotalViewsValue >= 10000000 
                 ? `${(absoluteTotalViewsValue / 10000000).toFixed(2)} Cr` 
@@ -528,84 +458,58 @@
             document.getElementById('metricTotalCost').innerText = `₹${totalCostValue.toLocaleString('en-IN')}`;
         }
 
-        // Slides Deck Carousel Pagination Tracking Script
         let activeSlideIndex = 1;
         const totalSlidesAvailable = 5;
 
         function updateSlideVisibilityState() {
             document.querySelectorAll('.slide-step').forEach((slide, idx) => {
-                if((idx + 1) === activeSlideIndex) {
-                    slide.classList.add('active');
-                } else {
-                    slide.classList.remove('active');
-                }
+                if((idx + 1) === activeSlideIndex) slide.classList.add('active');
+                else slide.classList.remove('active');
             });
             document.getElementById('slideIndicator').innerText = `Slide ${activeSlideIndex} of ${totalSlidesAvailable}`;
         }
 
         function nextSlide() {
-            if(activeSlideIndex < totalSlidesAvailable) {
-                activeSlideIndex++;
-            } else {
-                activeSlideIndex = 1; // loop back to initial title slide
-            }
+            if(activeSlideIndex < totalSlidesAvailable) activeSlideIndex++;
+            else activeSlideIndex = 1;
             updateSlideVisibilityState();
         }
 
         function prevSlide() {
-            if(activeSlideIndex > 1) {
-                activeSlideIndex--;
-            } else {
-                activeSlideIndex = totalSlidesAvailable; // loop back to final financial summary slide
-            }
+            if(activeSlideIndex > 1) activeSlideIndex--;
+            else activeSlideIndex = totalSlidesAvailable;
             updateSlideVisibilityState();
         }
 
-        // Global Chart Initializer on Script Window Load
         window.onload = function() {
             calculateCampaignMetrics();
-
-            // Chart 1: Market Share allocation
-            constctxShare = document.getElementById('marketShareChart').getContext('2d');
+            
+            const ctxShare = document.getElementById('marketShareChart').getContext('2d');
             new Chart(ctxShare, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Traditional Billboards', 'Auto-Rickshaw & Transit', 'Mall/Airport Ambient', 'Digital Screens (DOOH)'],
+                    labels: ['Billboards', 'Auto-Rickshaw Transit', 'Ambient OOH', 'DOOH Screens'],
                     datasets: [{
                         data: [42, 28, 18, 12],
                         backgroundColor: ['#374151', '#FBC02D', '#9CA3AF', '#6B7280'],
                         borderWidth: 0
                     }]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { color: '#374151', font: { size: 11 } } } }
-                }
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
             });
 
-            // Chart 2: Direct Cost Channel Efficiency Analytics (CPM comparison)
             const ctxCpm = document.getElementById('cpmComparisonChart').getContext('2d');
             new Chart(ctxCpm, {
                 type: 'bar',
                 data: {
-                    labels: ['Transit Media (AdRuns)', 'Social Media Video', 'Google Search Click', 'Premium Billboards'],
+                    labels: ['Transit (AdRuns)', 'Social Media', 'Google Search', 'Traditional OOH'],
                     datasets: [{
-                        label: 'Estimated CPM Cost (INR)',
                         data: [22, 140, 210, 180],
                         backgroundColor: ['#FBC02D', '#4B5563', '#4B5563', '#4B5563'],
                         borderRadius: 6
                     }]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: { ticks: { color: '#374151' }, grid: { color: '#E5E7EB' } },
-                        x: { ticks: { color: '#374151' }, grid: { display: false } }
-                    }
-                }
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
             });
         };
     </script>
