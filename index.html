@@ -17,7 +17,8 @@
                     colors: {
                         brandYellow: '#FBC02D',
                         brandDark: '#111827',
-                        brandGray: '#F3F4F6'
+                        brandGray: '#F3F4F6',
+                        menuOrange: '#F28C28' /* Matches the color profile in your screenshot */
                     }
                 }
             }
@@ -26,54 +27,63 @@
     <style>
         .page-section { display: none; }
         .page-section.active { display: block; }
-        .slide-step { display: none; }
-        .slide-step.active { display: block; }
+        .workflow-step { display: none; }
+        .workflow-step.active { display: block; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans flex flex-col min-h-screen">
 
-    <!-- WEBSITE NAVIGATION HEADER -->
-    <header class="bg-brandDark text-white sticky top-0 z-50 shadow-md border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col lg:flex-row justify-between items-center gap-4">
+    <!-- REVISED LOGO & HAMBURGER NAVIGATION HEADER -->
+    <header class="bg-black text-white sticky top-0 z-50 shadow-md border-b border-gray-900">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
             
-            <!-- LEFT SIDE: Logo (Recreated from IMG_20260617_195312.png), Title & Inline Core Page Buttons -->
-            <div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
-                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
-                    <!-- Custom SVG representation of the specific 'A' Swoosh Road logo from IMG_20260617_195312.png -->
-                    <div class="w-10 h-10 relative flex-shrink-0 bg-white rounded-lg p-1 shadow-md">
-                        <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Dark Main Structural 'A' shape -->
-                            <path d="M50 10 L15 85 L33 85 L42 62 L64 62 L50 10 Z" fill="#111827"/>
-                            <path d="M50 10 L85 85 L67 85 L58 62 L50 10 Z" fill="#111827"/>
-                            <!-- Yellow Dynamic Swoosh / Curved Road carving across the letter -->
-                            <path d="M15 90 C 40 75, 65 55, 90 55 C 70 58, 45 75, 25 95 Z" fill="#FBC02D"/>
-                            <!-- White road separation divider lines -->
-                            <path d="M32 81 L36 78 M46 72 L50 69 M59 64 L63 62" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <span class="text-xl font-black text-white tracking-tight">AdRuns<span class="text-brandYellow">.in</span></span>
-                        <p class="text-[9px] text-gray-400 uppercase tracking-widest font-bold whitespace-nowrap">Transit Advertising on the Move</p>
-                    </div>
+            <!-- LEFT SIDE: Company Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                <div class="w-10 h-10 relative flex-shrink-0 bg-white rounded-lg p-1 shadow-md">
+                    <svg viewBox="0 0 100 100" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10 L15 85 L33 85 L42 62 L64 62 L50 10 Z" fill="#111827"/>
+                        <path d="M50 10 L85 85 L67 85 L58 62 L50 10 Z" fill="#111827"/>
+                        <path d="M15 90 C 40 75, 65 55, 90 55 C 70 58, 45 75, 25 95 Z" fill="#FBC02D"/>
+                        <path d="M32 81 L36 78 M46 72 L50 69 M59 64 L63 62" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
                 </div>
-
-                <!-- Inline Action Layout Links placed directly in front of the Brand Identity -->
-                <div class="flex items-center gap-1.5 bg-gray-900 p-1 rounded-xl border border-gray-800 w-full sm:w-auto justify-center sm:justify-start">
-                    <button onclick="navigateTo('home')" class="nav-btn px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all text-brandYellow bg-gray-800">Home</button>
-                    <button onclick="navigateTo('insights')" class="nav-btn px-3.5 py-1.5 rounded-lg font-bold text-xs transition-all text-gray-400 hover:text-white hover:bg-gray-800">Market Insights</button>
+                <div>
+                    <span class="text-xl font-black text-white tracking-tight">AdRuns<span class="text-brandYellow">.in</span></span>
+                    <p class="text-[9px] text-gray-400 uppercase tracking-widest font-bold whitespace-nowrap">Transit Advertising Platform</p>
                 </div>
             </div>
 
-            <!-- RIGHT SIDE: Utility Tools, Pitch Deck and Direct Email Contact Button Anchor -->
-            <div class="flex flex-wrap items-center justify-center lg:justify-end gap-3 w-full lg:w-auto">
-                <button onclick="navigateTo('calculator')" class="nav-btn px-4 py-2 rounded-xl font-semibold text-xs transition-all text-gray-300 hover:text-white hover:bg-gray-800"><i class="fa-solid fa-sliders mr-1.5 text-brandYellow"></i>Campaign Planner</button>
-                <button onclick="navigateTo('deck')" class="nav-btn px-4 py-2 rounded-xl font-bold text-xs transition-all text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 hover:bg-yellow-500/20">Investor Presentation</button>
-                
-                <!-- New Mailto Direct Contact Action Button -->
-                <a href="mailto:adruns1230@gmail.com" class="bg-brandYellow hover:bg-yellow-500 text-brandDark font-black text-xs px-4 py-2 rounded-xl shadow-md transition-all flex items-center gap-1.5">
-                    <i class="fa-solid fa-envelope"></i> Contact Us
-                </a>
+            <!-- RIGHT SIDE: Modern 3-Line Hamburger Menu Button -->
+            <button id="menuToggleButton" onclick="toggleNavMenu()" class="text-menuOrange hover:text-orange-400 focus:outline-none p-2 transition-colors duration-200" aria-label="Toggle Navigation Menu">
+                <i id="menuIcon" class="fa-solid fa-bars text-2xl sm:text-3xl"></i>
+            </button>
+
+            <!-- SLIDE-DOWN DROPDOWN MENU INTERFACE -->
+            <div id="dropdownNavMenu" class="hidden absolute top-full left-0 w-full bg-neutral-950 border-b border-zinc-800 shadow-2xl z-50">
+                <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col space-y-3 font-semibold text-sm">
+                    <button onclick="handleMenuNavigation('home')" class="text-left py-2.5 px-4 rounded-xl text-brandYellow bg-zinc-900 transition-all">
+                        <i class="fa-solid fa-house mr-2 text-xs"></i> Home
+                    </button>
+                    <button onclick="handleMenuNavigation('about')" class="text-left py-2.5 px-4 rounded-xl text-gray-300 hover:text-white hover:bg-zinc-900 transition-all">
+                        <i class="fa-solid fa-circle-info mr-2 text-xs"></i> About Platform
+                    </button>
+                    <button onclick="handleMenuNavigation('insights')" class="text-left py-2.5 px-4 rounded-xl text-gray-300 hover:text-white hover:bg-zinc-900 transition-all">
+                        <i class="fa-solid fa-chart-line mr-2 text-xs"></i> Market Insights
+                    </button>
+                    <button onclick="handleMenuNavigation('workflow-app')" class="text-left py-2.5 px-4 rounded-xl text-amber-400 bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 transition-all">
+                        <i class="fa-solid fa-rocket mr-2 text-xs"></i> Self-Serve Console
+                    </button>
+                    <div class="border-t border-zinc-800/80 my-2 pt-2 grid grid-cols-2 gap-3">
+                        <button onclick="handleMenuNavigation('deck')" class="py-2.5 px-4 rounded-xl text-center text-xs font-bold text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 hover:bg-yellow-500/20 transition-all">
+                            Pitch Deck
+                        </button>
+                        <a href="mailto:adruns1230@gmail.com" class="py-2.5 px-4 rounded-xl text-center text-xs font-black bg-brandYellow hover:bg-yellow-500 text-brandDark transition-all flex items-center justify-center gap-1.5 shadow-md">
+                            <i class="fa-solid fa-envelope"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
             </div>
+
         </div>
     </header>
 
@@ -81,320 +91,459 @@
     <main class="flex-grow">
 
         <!-- PAGE 1: HOME PAGE -->
-        <section id="home" class="page-section active animate-fadeIn">
+        <section id="home" class="page-section active">
             <!-- Hero Banner -->
-            <div class="bg-gradient-to-br from-brandDark via-slate-900 to-indigo-950 text-white py-20 px-4 relative overflow-hidden">
-                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fbc02d_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                <div class="max-w-5xl mx-auto text-center relative z-10">
-                    <span class="bg-brandYellow/10 text-brandYellow text-xs font-bold px-4 py-1.5 rounded-full border border-brandYellow/30 uppercase tracking-widest">India's Leading Auto-Rickshaw Advertising Platform</span>
-                    <h1 class="text-4xl sm:text-6xl font-extrabold mt-6 mb-6 tracking-tight leading-tight">
-                        We Turn Everyday Rides <br class="hidden sm:inline"><span class="text-brandYellow bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">Into Brand Impressions.</span>
+            <div class="bg-gradient-to-br from-brandDark via-slate-900 to-indigo-950 text-white py-16 sm:py-24 px-4 text-center">
+                <div class="max-w-5xl mx-auto">
+                    <span class="bg-brandYellow/10 text-brandYellow text-[10px] sm:text-xs font-bold px-4 py-1.5 rounded-full border border-brandYellow/30 uppercase tracking-widest inline-block">"Google Ads for Transit Advertising"</span>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold mt-6 mb-6 tracking-tight leading-tight">
+                        Self-Serve Transit Campaigns <br><span class="text-brandYellow">With GPS Verification.</span>
                     </h1>
-                    <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed mb-10">
-                        AdRuns.in helps businesses reach thousands of potential customers daily through high-impact, hyper-targeted auto-rickshaw outdoor media placement.
+                    <p class="text-base sm:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto font-light mb-10">
+                        Experience the self-serve booking ecosystem driving granular outdoor media campaigns on autos, cabs, and transit routes across India.
                     </p>
-                    <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <button onclick="navigateTo('calculator')" class="bg-brandYellow hover:bg-yellow-500 text-brandDark font-bold px-8 py-4 rounded-xl shadow-lg shadow-brandYellow/20 transition-all text-lg flex items-center justify-center gap-2">
-                            Build Campaign <i class="fa-solid fa-arrow-right text-sm"></i>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto sm:max-w-none">
+                        <button onclick="navigateTo('workflow-app')" class="bg-brandYellow hover:bg-yellow-500 text-brandDark font-bold px-8 py-4 rounded-xl shadow-lg transition-all text-base sm:text-lg flex items-center justify-center gap-2 w-full sm:w-auto">
+                            Open Self-Serve Console <i class="fa-solid fa-circle-play"></i>
                         </button>
-                        <button onclick="navigateTo('deck')" class="bg-slate-800/80 hover:bg-slate-800 text-white border border-slate-700 font-semibold px-8 py-4 rounded-xl transition-all text-lg flex items-center justify-center gap-2 backdrop-blur-sm">
-                            <i class="fa-solid fa-circle-play text-brandYellow"></i> View Investor Deck
+                        <button onclick="navigateTo('about')" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-8 py-4 rounded-xl shadow-md transition-all text-base sm:text-lg w-full sm:w-auto">
+                            Learn More
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Value Proposition Row -->
-            <div class="bg-brandDark border-t border-slate-800 text-white py-10 px-4">
-                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 division-x division-slate-800">
-                    <div class="flex items-start gap-4 p-4">
-                        <div class="text-brandYellow text-3xl mt-1"><i class="fa-solid fa-users"></i></div>
-                        <div>
-                            <h4 class="font-bold text-base text-gray-100">High Daily Reach</h4>
-                            <p class="text-xs text-gray-400 mt-1">Impact thousands of commuters and drivers every single day.</p>
-                        </div>
+            <!-- Core Value Statement Pillars -->
+            <div class="py-16 bg-white px-4 border-b border-gray-100">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                    <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                        <div class="text-brandYellow text-2xl mb-3"><i class="fa-solid fa-square-sliders"></i></div>
+                        <h4 class="font-bold text-lg text-brandDark">Self-Serve Booking</h4>
+                        <p class="text-sm text-gray-600 mt-2">Design, target, and pay for out-of-home campaigns inside an agile programmatic portal.</p>
                     </div>
-                    <div class="flex items-start gap-4 p-4">
-                        <div class="text-brandYellow text-3xl mt-1"><i class="fa-solid fa-location-crosshairs"></i></div>
-                        <div>
-                            <h4 class="font-bold text-base text-gray-100">Hyperlocal Targeting</h4>
-                            <p class="text-xs text-gray-400 mt-1">Target specific high-traffic commercial routes, tech parks & markets.</p>
-                        </div>
+                    <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                        <div class="text-brandYellow text-2xl mb-3"><i class="fa-solid fa-location-crosshairs"></i></div>
+                        <h4 class="font-bold text-lg text-brandDark">Hyperlocal Targeting</h4>
+                        <p class="text-sm text-gray-600 mt-2">Isolate exact residential high-streets, macro transit lanes, and commercial trade markets.</p>
                     </div>
-                    <div class="flex items-start gap-4 p-4">
-                        <div class="text-brandYellow text-3xl mt-1"><i class="fa-solid fa-wallet"></i></div>
-                        <div>
-                            <h4 class="font-bold text-base text-gray-100">Cost Effective</h4>
-                            <p class="text-xs text-gray-400 mt-1">Maximize outdoor canvas visibility with unmatched industry ROI.</p>
-                        </div>
+                    <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                        <div class="text-brandYellow text-2xl mb-3"><i class="fa-solid fa-satellite-dish"></i></div>
+                        <h4 class="font-bold text-lg text-brandDark">GPS Verification</h4>
+                        <p class="text-sm text-gray-600 mt-2">Track real-time location metrics of matched vehicle fleets dynamically over secure APIs.</p>
                     </div>
-                    <div class="flex items-start gap-4 p-4">
-                        <div class="text-brandYellow text-3xl mt-1"><i class="fa-solid fa-chart-line"></i></div>
-                        <div>
-                            <h4 class="font-bold text-base text-gray-100">Measurable Results</h4>
-                            <p class="text-xs text-gray-400 mt-1">Track campaign execution & metrics with clear dashboard visibility.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4 p-4">
-                        <div class="text-brandYellow text-3xl mt-1"><i class="fa-solid fa-shield-check"></i></div>
-                        <div>
-                            <h4 class="font-bold text-base text-gray-100">Trusted & Reliable</h4>
-                            <p class="text-xs text-gray-400 mt-1">Safe, audited, verified, and premium quality physical ad inventory.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Workflow / How It Works -->
-            <div class="py-20 px-4 bg-white">
-                <div class="max-w-6xl mx-auto">
-                    <div class="text-center mb-16">
-                        <span class="text-sm font-bold text-amber-600 tracking-widest uppercase">Seamless Campaign Delivery</span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-brandDark mt-2">How It Works</h2>
-                        <div class="w-16 h-1 bg-brandYellow mx-auto mt-4 rounded-full"></div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-5 gap-8 relative">
-                        <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-location-dot"></i></div>
-                            <span class="text-sm font-bold text-amber-600">01. Location</span>
-                            <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Choose Location</h3>
-                            <p class="text-sm text-gray-600">Select the specific city & local areas you want to target.</p>
-                        </div>
-                        <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-van-shuttle"></i></div>
-                            <span class="text-sm font-bold text-amber-600">02. Fleet</span>
-                            <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Pick Inventory</h3>
-                            <p class="text-sm text-gray-600">Choose custom auto-rickshaw volumes based on routes, audience & availability.</p>
-                        </div>
-                        <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-palette"></i></div>
-                            <span class="text-sm font-bold text-amber-600">03. Creative</span>
-                            <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Share Creative</h3>
-                            <p class="text-sm text-gray-600">We professionally design & wrap your custom advertisement on selected autos.</p>
-                        </div>
-                        <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-tower-broadcast"></i></div>
-                            <span class="text-sm font-bold text-amber-600">04. Deployment</span>
-                            <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Go Live</h3>
-                            <p class="text-sm text-gray-600">Your brand moves dynamically across the city, seen by thousands every day.</p>
-                        </div>
-                        <div class="bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-100 relative group hover:shadow-md transition-all">
-                            <div class="w-12 h-12 rounded-xl bg-brandDark text-brandYellow flex items-center justify-center text-xl font-bold mb-4 shadow-md"><i class="fa-solid fa-square-poll-vertical"></i></div>
-                            <span class="text-sm font-bold text-amber-600">05. Analytics</span>
-                            <h3 class="text-lg font-bold text-brandDark mt-1 mb-2">Track Metrics</h3>
-                            <p class="text-sm text-gray-600">Get real insights, execution images, route verification, and performance audits.</p>
-                        </div>
+                    <div class="p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                        <div class="text-brandYellow text-2xl mb-3"><i class="fa-solid fa-chart-mixed"></i></div>
+                        <h4 class="font-bold text-lg text-brandDark">Granular Analytics</h4>
+                        <p class="text-sm text-gray-600 mt-2">Measure impressions, reach metrics, coverage heat-maps, and optimized ROI calculations.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PAGE 2: MARKET INSIGHTS -->
+        <!-- PAGE 2: ABOUT THE PLATFORM -->
+        <section id="about" class="page-section py-16 px-4 bg-white">
+            <div class="max-w-5xl mx-auto space-y-12">
+                <div class="text-center max-w-2xl mx-auto">
+                    <span class="bg-amber-100 text-amber-800 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Our Identity</span>
+                    <h2 class="text-3xl font-extrabold text-brandDark mt-3">About AdRuns.in</h2>
+                    <p class="text-sm text-gray-600 mt-2">Bridging the gap between automated digital planning interfaces and verified real-world out-of-home transit distribution.</p>
+                </div>
+
+                <!-- Strategic Framework Matrix Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-brandDark flex items-center gap-2">
+                            <i class="fa-solid fa-crosshairs text-brandYellow"></i> Vision & Objective
+                        </h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            AdRuns operationalizes India's first unified transit operating infrastructure. Traditional outdoor formats suffer from fragmented pricing, unverified impressions, and zero physical audit logging. We introduce accountability and dynamic agility to street-level campaigns.
+                        </p>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            By styling our deployment ecosystem like web programmatic portals, brands deploy highly customized message modules to localized auto networks, taxi lines, and commercial transport grids.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col justify-center space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="text-brandYellow text-xl pt-0.5"><i class="fa-solid fa-shield-check"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-brandDark">100% Verified Tracking</h4>
+                                <p class="text-xs text-gray-500 mt-0.5">Every matched asset emits geo-coordinate streams directly to client verification portals.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="text-brandYellow text-xl pt-0.5"><i class="fa-solid fa-coins"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-brandDark">Equitable Revenue Distribution</h4>
+                                <p class="text-xs text-gray-500 mt-0.5">70% to 80% of gross capital structures stream directly back down to regional transit owner operators.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="text-brandYellow text-xl pt-0.5"><i class="fa-solid fa-sliders"></i></div>
+                            <div>
+                                <h4 class="font-bold text-sm text-brandDark">Granular Parameters</h4>
+                                <p class="text-xs text-gray-500 mt-0.5">Target commercial micro hubs, set fine budgetary limits, and change creatives with minimal lead times.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action Footer Panel inside About Section -->
+                <div class="bg-brandDark text-white p-8 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-6 mt-6">
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Ready to test the booking architecture?</h3>
+                        <p class="text-xs text-gray-400 mt-1">Simulate an online programmatic purchase using our integrated console workspace panels.</p>
+                    </div>
+                    <button onclick="navigateTo('workflow-app')" class="bg-brandYellow hover:bg-yellow-500 text-brandDark font-bold text-xs px-5 py-3 rounded-xl shadow-md transition-all whitespace-nowrap">
+                        Launch Application Console <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: APPLICATION WORKFLOW ENGINE -->
+        <section id="workflow-app" class="page-section py-8 sm:py-12 px-4 bg-gray-100">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-6 text-center sm:text-left flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-black text-brandDark">AdRuns.in Console</h2>
+                        <p class="text-gray-600 text-xs sm:text-sm mt-1">End-to-end sandbox representing India's automated Transit Operating System.</p>
+                    </div>
+                    
+                    <!-- DROPDOWN STEP CONTROLLER SELECTION INTERFACE -->
+                    <div class="w-full sm:w-56 text-left">
+                        <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Jump directly to Workflow Step:</label>
+                        <div class="relative">
+                            <select id="stepDropdownNavigator" onchange="handleDropdownStepChange(this.value)" class="w-full p-2.5 bg-white border border-gray-300 rounded-xl font-bold text-xs text-brandDark shadow-sm focus:outline-none focus:border-brandYellow appearance-none cursor-pointer">
+                                <option value="1">Step 1: Create Campaign</option>
+                                <option value="2">Step 2: Recommendation</option>
+                                <option value="3">Step 3: Secure Booking</option>
+                                <option value="4">Step 4: Fleet Allocation</option>
+                                <option value="5">Step 5: Installation</option>
+                                <option value="6">Step 6: GPS Live Verification</option>
+                                <option value="7">Step 7: Performance Analytics</option>
+                                <option value="8">Step 8: Post-Campaign Report</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400 text-[10px]"><i class="fa-solid fa-chevron-down"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VISUAL BACKDROP TABS BAR FOR LARGER DISPLAYS -->
+                <div class="hidden md:flex items-center justify-between bg-white p-3 rounded-xl border border-gray-200 mb-6 gap-2 text-center text-[10px] font-bold uppercase tracking-wider">
+                    <div id="step-badge-1" class="flex-1 py-1 text-amber-600 border-b-2 border-amber-500">1. Create</div>
+                    <div id="step-badge-2" class="flex-1 py-1 text-gray-400 border-b-2 border-transparent">2. Match</div>
+                    <div id="step-badge-3" class="flex-1 py-1 text-gray-400 border-b-2 border-transparent">3. Book</div>
+                    <div id="step-badge-4" class="flex-1 py-1 text-gray-400 border-b-2 border-transparent">4. Allocate</div>
+                    <div id="step-badge-5" class="flex-1 py-1 text-gray-400 border-b-2 border-transparent">5. Install</div>
+                    <div id="step-badge-6" class="flex-1 py-1 text-gray-400 border-b-2 border-transparent">6. Track</div>
+                    <div id="step-badge-7" class="flex-1 py-1 text-gray-400 border-b-2 border-transparent">7. Analyse</div>
+                    <div id="step-badge-8" class="flex-1 py-1 text-gray-400 border-b-2 border-transparent">8. ROI Report</div>
+                </div>
+
+                <!-- MAIN WORKSPACE BOX -->
+                <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-md border border-gray-200 min-h-[420px] flex flex-col justify-between">
+                    
+                    <!-- WORKFLOW STEP 1: CREATE CAMPAIGN -->
+                    <div id="step-card-1" class="workflow-step active space-y-5">
+                        <div class="border-b pb-2">
+                            <span class="text-[10px] uppercase font-black tracking-wider text-amber-600">Step 01 // Configuration Input</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-0.5">Configure Target Specifications</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Target Indian Hub City</label>
+                                    <select id="appCity" class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-brandYellow">
+                                        <option value="Delhi NCR">Delhi NCR</option>
+                                        <option value="Mumbai Metro">Mumbai Metro</option>
+                                        <option value="Bengaluru Core">Bengaluru Core</option>
+                                        <option value="Hyderabad Hitech">Hyderabad Hitech</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Target Micro Area Sector</label>
+                                    <input type="text" id="appArea" value="Connaught Place, Cyber City, Tech Parks" class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-brandYellow">
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Budget (INR)</label>
+                                        <input type="number" id="appBudget" value="75000" oninput="updateRevenueSplitPreview()" class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl font-bold text-xs focus:outline-none focus:border-brandYellow">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Duration</label>
+                                        <select id="appDuration" class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-brandYellow">
+                                            <option value="1">1 Month</option>
+                                            <option value="2">2 Months</option>
+                                            <option value="3">3 Months</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="border-2 border-dashed border-gray-200 rounded-xl p-3 text-center hover:bg-gray-50 cursor-pointer">
+                                        <i class="fa-solid fa-cloud-arrow-up text-gray-400 text-base mb-1"></i>
+                                        <p class="text-[10px] text-gray-500 font-medium">Upload Creative Layout Proof Artwork Sheet</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WORKFLOW STEP 2: OPTIMIZED RECOMMENDATIONS -->
+                    <div id="step-card-2" class="workflow-step space-y-5">
+                        <div class="border-b pb-2">
+                            <span class="text-[10px] uppercase font-black tracking-wider text-amber-600">Step 02 // Platform Inventory Match</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-0.5">Recommended Fleet & Routing Matrix</h3>
+                        </div>
+                        <div class="bg-amber-500/5 border border-amber-500/20 rounded-xl p-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                            <div>
+                                <h4 class="font-bold text-brandDark text-xs">System Engine Match Found</h4>
+                                <p class="text-[11px] text-gray-500">Assets cross-referenced dynamically against target micro area profiles.</p>
+                            </div>
+                            <span class="bg-brandDark text-brandYellow font-mono font-black text-[10px] px-2.5 py-1 rounded">Confidence: 98.4%</span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-lg bg-yellow-500/10 text-yellow-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-van-shuttle"></i></div>
+                                    <div>
+                                        <h5 class="font-bold text-xs text-brandDark">Auto-Rickshaw Panels</h5>
+                                        <p class="text-[10px] text-gray-500">Commercial Dwell Zones</p>
+                                    </div>
+                                </div>
+                                <span class="font-black text-brandDark text-xs whitespace-nowrap">85 Units</span>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-xl border border-gray-200 flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-taxi"></i></div>
+                                    <div>
+                                        <h5 class="font-bold text-xs text-brandDark">App Cabs Fleets</h5>
+                                        <p class="text-[10px] text-gray-500">High-Speed Highways</p>
+                                    </div>
+                                </div>
+                                <span class="font-black text-brandDark text-xs whitespace-nowrap">12 Units</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WORKFLOW STEP 3: CAMPAIGN SECURE BOOKING & PAYMENTS -->
+                    <div id="step-card-3" class="workflow-step space-y-5">
+                        <div class="border-b pb-2">
+                            <span class="text-[10px] uppercase font-black tracking-wider text-amber-600">Step 03 // Secure Checkout Gateway</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-0.5">Review Statement Summary & Commit Online Payment</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-2 bg-gray-50 p-4 rounded-xl border border-gray-100 text-xs">
+                                <h4 class="font-bold text-[10px] text-gray-400 uppercase tracking-wider">Campaign Summary Overview</h4>
+                                <div class="flex justify-between"><span class="text-gray-500">Target Region:</span> <b class="text-brandDark id-preview-city">Delhi NCR</b></div>
+                                <div class="flex justify-between"><span class="text-gray-500">Configured Budget:</span> <b class="text-brandDark id-preview-budget">₹75,000</b></div>
+                                <div class="flex justify-between border-t pt-1.5 mt-1.5"><span class="text-gray-900 font-bold">Total Payable:</span> <b class="text-brandDark font-black id-preview-payable">₹75,000</b></div>
+                            </div>
+                            
+                            <div class="space-y-2 bg-slate-900 text-white p-4 rounded-xl text-xs">
+                                <h4 class="font-bold text-[9px] text-amber-400 uppercase tracking-widest"><i class="fa-solid fa-chart-pie mr-1"></i> Platform Revenue Split Matrix</h4>
+                                <div class="space-y-1.5 pt-0.5">
+                                    <div class="flex justify-between text-[11px]"><span class="text-gray-400">AdRuns Fee (30%):</span> <span class="font-mono text-white" id="split-platform">₹22,500</span></div>
+                                    <div class="w-full bg-gray-800 h-1 rounded-full overflow-hidden"><div class="bg-amber-400 h-full" style="width: 30%"></div></div>
+                                    <div class="flex justify-between text-[11px] pt-0.5"><span class="text-gray-400">Driver Earnings (70%):</span> <span class="font-mono text-emerald-400" id="split-fleet">₹52,500</span></div>
+                                    <div class="w-full bg-gray-800 h-1 rounded-full overflow-hidden"><div class="bg-emerald-400 h-full" style="width: 70%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WORKFLOW STEP 4: FLEET ALLOCATION ENGINE -->
+                    <div id="step-card-4" class="workflow-step space-y-5">
+                        <div class="border-b pb-2">
+                            <span class="text-[10px] uppercase font-black tracking-wider text-amber-600">Step 04 // Dynamic Fleet Match & Logistics</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-0.5">Automated Driver Assignment Execution</h3>
+                        </div>
+                        <div class="p-3 bg-emerald-500/10 text-emerald-800 rounded-xl border border-emerald-500/20 text-[11px] font-semibold flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-emerald-600 flex-shrink-0"></i> <span>Fleet nodes successfully assigned automatically within operating region profiles.</span>
+                        </div>
+                        <div class="space-y-1.5">
+                            <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Active Drivers Dispatched</h4>
+                            <div class="max-h-28 overflow-y-auto border border-gray-100 rounded-xl text-[11px] divide-y divide-gray-100">
+                                <div class="p-2.5 bg-gray-50 flex justify-between items-center gap-4"><span><i class="fa-solid fa-id-card text-gray-400 mr-1.5"></i><b>Rajesh Kumar</b> (Auto Fleet #DL-1R-29)</span> <span class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded text-[9px] font-bold flex-shrink-0">Assigned</span></div>
+                                <div class="p-2.5 bg-gray-50 flex justify-between items-center gap-4"><span><i class="fa-solid fa-id-card text-gray-400 mr-1.5"></i><b>Amit Sharma</b> (Auto Fleet #DL-3C-88)</span> <span class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded text-[9px] font-bold flex-shrink-0">Assigned</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WORKFLOW STEP 5: BRANDING INSTALLATION & QUALITY AUDITS -->
+                    <div id="step-card-5" class="workflow-step space-y-5">
+                        <div class="border-b pb-2">
+                            <span class="text-[10px] uppercase font-black tracking-wider text-amber-600">Step 05 // Physical Production Management</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-0.5">Creative Printing & Fleet Wrapping Verification</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div class="border rounded-xl p-3 text-center bg-gray-50">
+                                <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mx-auto text-xs font-bold mb-1.5"><i class="fa-solid fa-print"></i></div>
+                                <h4 class="font-bold text-xs text-brandDark">1. Vinyl Print Matrix</h4>
+                                <p class="text-[10px] text-gray-500 mt-0.5">UV-weatherproofing complete.</p>
+                            </div>
+                            <div class="border rounded-xl p-3 text-center bg-gray-50">
+                                <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center mx-auto text-xs font-bold mb-1.5"><i class="fa-solid fa-wrench"></i></div>
+                                <h4 class="font-bold text-xs text-brandDark">2. Fleet Wrapping</h4>
+                                <p class="text-[10px] text-gray-500 mt-0.5">Mapped across execution hubs.</p>
+                            </div>
+                            <div class="border rounded-xl p-3 text-center bg-gray-50">
+                                <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto text-xs font-bold mb-1.5"><i class="fa-solid fa-camera"></i></div>
+                                <h4 class="font-bold text-xs text-brandDark">3. Production Audit</h4>
+                                <p class="text-[10px] text-gray-500 mt-0.5">Audit photographs verified.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WORKFLOW STEP 6: LIVE GPS MONITORING PIPELINE -->
+                    <div id="step-card-6" class="workflow-step space-y-5">
+                        <div class="border-b pb-2">
+                            <span class="text-[10px] uppercase font-black tracking-wider text-amber-600">Step 06 // Real-time Spatial Verification</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-0.5">Live Fleet Location & Compliance Tracking</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="md:col-span-2 bg-slate-900 rounded-xl h-36 relative overflow-hidden border border-slate-800 flex items-center justify-center p-4">
+                                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fbc02d_2px,transparent_2px)] [background-size:16px_16px]"></div>
+                                <div class="relative z-10 text-center text-[11px] text-gray-400 space-y-1">
+                                    <div class="w-2.5 h-2.5 bg-brandYellow rounded-full mx-auto animate-ping mb-1"></div>
+                                    <p class="font-mono text-white tracking-wide"><i class="fa-solid fa-satellite mr-1"></i> Syncing Live Spatial Coordinates Map Data...</p>
+                                </div>
+                            </div>
+                            <div class="space-y-2 bg-gray-50 p-3 rounded-xl border border-gray-200 flex flex-col justify-center text-xs">
+                                <div class="flex justify-between items-center"><span class="text-gray-500">Compliance:</span> <span class="font-bold text-emerald-600">100% Passed</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-500">Geofence:</span> <span class="font-bold text-brandDark">Active Grid</span></div>
+                                <div class="flex justify-between items-center"><span class="text-gray-500">Violations:</span> <span class="font-bold text-gray-900">0 Alerts</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WORKFLOW STEP 7: LIVE ANALYTICS ANALYTICAL DASHBOARD -->
+                    <div id="step-card-7" class="workflow-step space-y-5">
+                        <div class="border-b pb-2">
+                            <span class="text-[10px] uppercase font-black tracking-wider text-amber-600">Step 07 // Programmatic Performance Ledger</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-0.5">Impressions, Aggregations & Route Density</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center text-xs">
+                            <div class="bg-gray-50 p-3 rounded-xl border border-gray-200">
+                                <span class="text-[9px] uppercase tracking-wider text-gray-400 block font-bold">Estimated Core Reach</span>
+                                <p class="text-lg font-black text-brandDark mt-0.5">485,000+</p>
+                                <span class="text-[9px] text-emerald-600 block mt-0.5 font-medium"><i class="fa-solid fa-arrow-up"></i> Commuters</span>
+                            </div>
+                            <div class="bg-gray-50 p-3 rounded-xl border border-gray-200">
+                                <span class="text-[9px] uppercase tracking-wider text-gray-400 block font-bold">Gross Impressions</span>
+                                <p class="text-lg font-black text-brandYellow bg-brandDark px-1.5 py-0.5 rounded mt-0.5 inline-block">1.45M</p>
+                                <span class="text-[9px] text-gray-500 block mt-0.5 font-medium">Visual Encounters</span>
+                            </div>
+                            <div class="bg-gray-50 p-3 rounded-xl border border-gray-200">
+                                <span class="text-[9px] uppercase tracking-wider text-gray-400 block font-bold">Route Density Matrix</span>
+                                <p class="text-lg font-black text-brandDark mt-0.5">94.8%</p>
+                                <span class="text-[9px] text-blue-600 block mt-0.5 font-medium">Zone Saturation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WORKFLOW STEP 8: FINAL SUMMARY EXECUTION INSIGHTS -->
+                    <div id="step-card-8" class="workflow-step space-y-5">
+                        <div class="border-b pb-2">
+                            <span class="text-[10px] uppercase font-black tracking-wider text-amber-600">Step 08 // Performance Intelligence Report</span>
+                            <h3 class="text-lg font-bold text-brandDark mt-0.5">ROI Valuation Summary Metrics & Insights</h3>
+                        </div>
+                        <div class="bg-slate-900 text-white rounded-xl p-4 border border-slate-800 space-y-3">
+                            <div class="flex flex-col sm:flex-row items-start gap-3 text-xs">
+                                <div class="w-8 h-8 rounded-lg bg-yellow-500/10 text-brandYellow flex items-center justify-center text-base flex-shrink-0"><i class="fa-solid fa-clipboard-check"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-gray-100">Strategic Performance Recommendation Summary</h4>
+                                    <p class="text-gray-400 mt-1 leading-relaxed text-[11px]">
+                                        Your campaign metrics confirm optimal consumer awareness profiles inside cross-commercial corridors. We recommend scaling vehicle allocation density weights by an additional 15% for subsequent deployment cycles.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WORKSPACE BOX STEP FOOTER NAVIGATION CONTROLS -->
+                    <div class="flex items-center justify-between gap-4 border-t border-gray-100 pt-4 mt-6 w-full">
+                        <button id="btnAppBack" onclick="changeWorkflowStep(-1)" disabled class="flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-gray-400 bg-gray-100 transition-all border border-gray-200 cursor-not-allowed select-none w-1/2 sm:w-auto">
+                            <i class="fa-solid fa-chevron-left text-[9px]"></i> Back
+                        </button>
+                        
+                        <button id="btnAppNext" onclick="changeWorkflowStep(1)" class="flex items-center justify-center gap-1.5 px-5 py-2 rounded-xl text-xs font-black text-brandDark bg-brandYellow hover:bg-yellow-500 active:scale-[0.98] transition-all shadow-sm border border-yellow-500 w-1/2 sm:w-auto">
+                            Advance <i class="fa-solid fa-chevron-right text-[9px]"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: MARKET INSIGHTS -->
         <section id="insights" class="page-section py-16 px-4">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
                     <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Data-Driven Strategy</span>
                     <h2 class="text-3xl font-extrabold text-brandDark mt-3">2026 Transit Advertising Market Landscape</h2>
-                    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">An analytical deep dive into modern outdoor media spend dynamics, audience tracking, and growth forecasts in India.</p>
                 </div>
 
-                <!-- KPI Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-chart-line-up"></i></div>
-                        <div>
-                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Indian OOH Market Growth</span>
-                            <h3 class="text-2xl font-black text-brandDark mt-0.5">₹4,800+ Cr <span class="text-xs font-medium text-emerald-600">+11% YoY</span></h3>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-eye"></i></div>
-                        <div>
-                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Average Daily Reach/Auto</span>
-                            <h3 class="text-2xl font-black text-brandDark mt-0.5">5,500+ <span class="text-xs font-medium text-blue-600">Impressions</span></h3>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl"><i class="fa-solid fa-tags"></i></div>
-                        <div>
-                            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">CPM Direct Cost Advantage</span>
-                            <h3 class="text-2xl font-black text-brandDark mt-0.5">₹18 - ₹25 <span class="text-xs font-medium text-amber-600">vs ₹120+ Digital</span></h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Interactive Charts Breakdown -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base"><i class="fa-solid fa-pie-chart text-brandYellow mr-2"></i> Share of Indian OOH Ad Spend (2026 Forecast)</h4>
-                        <div class="h-64 flex justify-center items-center">
-                            <canvas id="marketShareChart"></canvas>
-                        </div>
+                        <h4 class="font-bold text-gray-800 mb-4 text-base"><i class="fa-solid fa-pie-chart text-brandYellow mr-2"></i> Share of Indian OOH Ad Spend</h4>
+                        <div class="h-64 flex justify-center items-center relative w-full"><canvas id="marketShareChart"></canvas></div>
                     </div>
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <h4 class="font-bold text-gray-800 mb-4 text-base"><i class="fa-solid fa-chart-column text-brandYellow mr-2"></i> Advertising Channel Cost Effectiveness (CPM in INR)</h4>
-                        <div class="h-64 flex justify-center items-center">
-                            <canvas id="cpmComparisonChart"></canvas>
-                        </div>
+                        <h4 class="font-bold text-gray-800 mb-4 text-base"><i class="fa-solid fa-chart-column text-brandYellow mr-2"></i> Advertising Channel Effectiveness (CPM in INR)</h4>
+                        <div class="h-64 flex justify-center items-center relative w-full"><canvas id="cpmComparisonChart"></canvas></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PAGE 3: CAMPAIGN PLANNER CALCULATOR -->
-        <section id="calculator" class="page-section py-16 px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12">
-                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider">Campaign Architect</span>
-                    <h2 class="text-3xl font-extrabold text-brandDark mt-3">Interactive Ad-Spend & Reach Planner</h2>
-                    <p class="text-gray-600 mt-2">Customize parameters below to get instant quotes and predictive impression analytics for your transit campaign.</p>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl shadow-md border border-gray-100 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Configurator Left -->
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">1. Select Target Zone</label>
-                            <select id="calcCity" onchange="calculateCampaignMetrics()" class="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-brandYellow">
-                                <option value="delhi">Delhi NCR (Premium Multi-Route Fleet)</option>
-                                <option value="mumbai">Mumbai (High Traffic Western/Eastern Express)</option>
-                                <option value="bangalore">Bengaluru (Tech Park & High-Density Hubs)</option>
-                                <option value="hyderabad">Hyderabad (Hitech City Loop)</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <label class="block text-sm font-bold text-gray-700 uppercase tracking-wide">2. Total Auto Inventory Count</label>
-                                <span id="autoCountVal" class="bg-brandDark text-brandYellow text-xs font-black px-3 py-1 rounded-full">50 Autos</span>
-                            </div>
-                            <input type="range" id="calcAutos" min="10" max="500" step="5" value="50" oninput="calculateCampaignMetrics()" class="w-full accent-amber-500 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <label class="block text-sm font-bold text-gray-700 uppercase tracking-wide">3. Campaign Duration</label>
-                                <span id="durationVal" class="bg-brandDark text-brandYellow text-xs font-black px-3 py-1 rounded-full">1 Month</span>
-                            </div>
-                            <input type="range" id="calcDuration" min="1" max="6" step="1" value="1" oninput="calculateCampaignMetrics()" class="w-full accent-amber-500 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                        </div>
-                    </div>
-
-                    <!-- Metrics Right -->
-                    <div class="bg-slate-900 text-white rounded-2xl p-6 flex flex-col justify-between shadow-inner">
-                        <div>
-                            <h4 class="text-xs uppercase font-bold tracking-widest text-amber-400 mb-6 border-b border-slate-800 pb-3"><i class="fa-solid fa-chart-pie mr-1"></i> Live Strategic Impact Metrics</h4>
-                            <div class="grid grid-cols-2 gap-4 mb-6">
-                                <div>
-                                    <span class="text-[11px] uppercase text-gray-400 block tracking-wide">Est. Daily Reach</span>
-                                    <p id="metricDailyReach" class="text-xl font-black text-white mt-0.5">275,000</p>
-                                </div>
-                                <div>
-                                    <span class="text-[11px] uppercase text-gray-400 block tracking-wide">Total Campaign Views</span>
-                                    <p id="metricTotalViews" class="text-xl font-black text-brandYellow mt-0.5">8.25 Million</p>
-                                </div>
-                            </div>
-                            <div class="border-t border-slate-800 pt-4">
-                                <span class="text-[11px] uppercase text-gray-400 block tracking-wide">Estimated Campaign Investment</span>
-                                <p id="metricTotalCost" class="text-3xl font-black text-white mt-1">₹45,000</p>
-                            </div>
-                        </div>
-                        <a href="mailto:adruns1230@gmail.com?subject=New Campaign Booking Request" class="w-full text-center mt-6 bg-brandYellow hover:bg-yellow-500 text-brandDark font-bold py-3.5 rounded-xl shadow-lg transition-all text-sm uppercase tracking-wider block">
-                            Submit Planner via Email
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 4: INVESTOR PRESENTATION -->
+        <!-- PAGE 5: INVESTOR PRESENTATION SLIDE DECK -->
         <section id="deck" class="page-section py-12 px-4 bg-gray-900 text-white">
             <div class="max-w-6xl mx-auto">
-                <div class="flex flex-col sm:flex-row justify-between items-center bg-gray-800 p-4 rounded-2xl mb-8 border border-gray-700 gap-4">
-                    <div>
-                        <h3 class="font-bold text-lg text-white">AdRuns.in Corporate Deck</h3>
+                <div class="flex flex-col sm:flex-row justify-between items-center bg-gray-800 p-4 rounded-2xl mb-6 border border-gray-700 gap-4">
+                    <div class="text-center sm:text-left">
+                        <h3 class="font-bold text-base sm:text-lg text-white">AdRuns.in Corporate Deck</h3>
                         <p class="text-xs text-gray-400">Consulting-grade pitch framework optimized for corporate client acquisition.</p>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <button onclick="prevSlide()" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 text-white flex items-center justify-center transition-all"><i class="fa-solid fa-chevron-left"></i></button>
-                        <span id="slideIndicator" class="font-bold text-sm bg-brandDark px-4 py-2 rounded-xl text-brandYellow border border-gray-700">Slide 1 of 5</span>
-                        <button onclick="nextSlide()" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 text-white flex items-center justify-center transition-all"><i class="fa-solid fa-chevron-right"></i></button>
+                    <div class="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto border-t border-gray-700 pt-3 sm:pt-0 sm:border-t-0">
+                        <button onclick="prevSlide()" class="w-10 h-10 rounded-xl bg-gray-700 hover:bg-gray-600 active:scale-95 text-white flex items-center justify-center transition-all border border-gray-600"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span id="slideIndicator" class="font-bold font-mono text-xs bg-brandDark px-4 py-2.5 rounded-xl text-brandYellow border border-gray-700 whitespace-nowrap">Slide 1 of 5</span>
+                        <button onclick="nextSlide()" class="w-10 h-10 rounded-xl bg-gray-700 hover:bg-gray-600 active:scale-95 text-white flex items-center justify-center transition-all border border-gray-600"><i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </div>
 
-                <!-- SLIDE CANVAS STAGE -->
-                <div class="bg-brandDark rounded-3xl min-h-[500px] border border-gray-800 p-8 sm:p-16 flex flex-col justify-between relative overflow-hidden shadow-2xl">
-                    <!-- SLIDE 1 -->
-                    <div class="slide-step active space-y-8 my-auto">
+                <div class="bg-brandDark rounded-3xl min-h-[380px] sm:min-h-[420px] border border-gray-800 p-6 sm:p-12 lg:p-16 flex flex-col justify-between relative overflow-hidden shadow-2xl">
+                    <div class="slide-step active space-y-6 sm:space-y-8 my-auto">
                         <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 text-brandYellow px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Strategic Pitch Deck</div>
-                        <h1 class="text-4xl sm:text-6xl font-black tracking-tight max-w-4xl leading-tight">
+                        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight max-w-4xl leading-tight">
                             Disrupting Indian Out-Of-Home Media Through <span class="text-brandYellow">Dynamic Hyperlocal Fleets</span>
                         </h1>
-                        <p class="text-gray-400 text-base sm:text-lg max-w-2xl font-light">
-                            How AdRuns.in bridges the gap between digital tracking and real-world impact using high-reach auto-rickshaw inventories.
-                        </p>
+                    </div>
+                    <div class="slide-step space-y-4 my-auto">
+                        <span class="text-xs font-bold text-rose-400 uppercase tracking-widest block">Slide 02 // Core Market Pain Points</span>
+                        <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight text-white">The Outdoor & Digital Dilemma</h2>
+                        <p class="text-xs sm:text-sm text-gray-400 max-w-2xl leading-relaxed">Programmatic click costs escalated significantly, while traditional billboards lack fine-grained micro-targeting layers.</p>
+                    </div>
+                    <div class="slide-step space-y-4 my-auto">
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest block">Slide 03 // Value Innovation</span>
+                        <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight text-white">AdRuns.in Execution Architecture</h2>
+                        <p class="text-xs sm:text-sm text-gray-400 max-w-2xl leading-relaxed">Self-serve campaign parameters linked to high-exposure vehicle allocations at a fraction of traditional budget overheads.</p>
+                    </div>
+                    <div class="slide-step space-y-4 my-auto">
+                        <span class="text-xs font-bold text-brandYellow uppercase tracking-widest block">Slide 04 // Operational Framework</span>
+                        <h2 class="text-xl sm:text-3xl font-extrabold text-white">The Self-Serve Engine Core</h2>
+                        <p class="text-xs sm:text-sm text-gray-400 max-w-2xl leading-relaxed">Complete end-to-end alignment coupling layout compilation, fleet orchestration, installation proofs, and live GPS analytics verification.</p>
+                    </div>
+                    <div class="slide-step space-y-4 my-auto">
+                        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest block">Slide 05 // Revenue Split Dynamics</span>
+                        <h2 class="text-xl sm:text-3xl font-extrabold text-white">Transparent Scale Projections</h2>
+                        <p class="text-xs sm:text-sm text-gray-400 max-w-2xl leading-relaxed">AdRuns keeps a standard 20-30% service allocation fee, distributing 70-80% directly back into localized fleet network operators.</p>
                     </div>
 
-                    <!-- SLIDE 2 -->
-                    <div class="slide-step space-y-6 my-auto">
-                        <span class="text-xs font-bold text-rose-400 uppercase tracking-widest">Slide 02 // Core Market Pain Points</span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">The Outdoor & Digital Dilemma</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                            <div class="bg-gray-800/40 border border-gray-800 p-6 rounded-2xl">
-                                <h4 class="font-bold text-lg text-white mb-2">Exorbitant CPM Rates</h4>
-                                <p class="text-sm text-gray-400">Digital programmatic click acquisition prices escalated significantly, squeezing corporate margin frameworks.</p>
-                            </div>
-                            <div class="bg-gray-800/40 border border-gray-800 p-6 rounded-2xl">
-                                <h4 class="font-bold text-lg text-white mb-2">Static Banner Blindness</h4>
-                                <p class="text-sm text-gray-400">Traditional billboards require massive capital but suffer low dwell times from speeding vehicle occupants.</p>
-                            </div>
-                            <div class="bg-gray-800/40 border border-gray-800 p-6 rounded-2xl">
-                                <h4 class="font-bold text-lg text-white mb-2">Zero Micro-Targeting</h4>
-                                <p class="text-sm text-gray-400">Standard platforms fail to capture local commercial alley traffic patterns or localized demographic density hubs.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SLIDE 3 -->
-                    <div class="slide-step space-y-6 my-auto">
-                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Slide 03 // Value Innovation</span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">AdRuns.in Execution Architecture</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-4">
-                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl"><div class="text-brandYellow font-black text-2xl">100%</div><p class="text-xs text-gray-400 mt-1">Audited Deployments</p></div>
-                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl"><div class="text-brandYellow font-black text-2xl">5,500+</div><p class="text-xs text-gray-400 mt-1">Daily Views / Auto</p></div>
-                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl"><div class="text-brandYellow font-black text-2xl">1/5th</div><p class="text-xs text-gray-400 mt-1">Cost of Billboards</p></div>
-                            <div class="p-4 bg-slate-900 border border-slate-800 rounded-xl"><div class="text-brandYellow font-black text-2xl">Premium</div><p class="text-xs text-gray-400 mt-1">Weatherproof Vinyl</p></div>
-                        </div>
-                    </div>
-
-                    <!-- SLIDE 4 -->
-                    <div class="slide-step space-y-6 my-auto">
-                        <span class="text-xs font-bold text-brandYellow uppercase tracking-widest">Slide 04 // Operational Playbook</span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">5-Step Deployment Lifecycle</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-xs mt-4">
-                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1">1. Target</b> Geo-fence and isolate key urban nodes.</div>
-                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1">2. Scale</b> Cluster ideal auto counts for necessary reach.</div>
-                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1">3. Wrap</b> Execute full panel high-resolution graphic wraps.</div>
-                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1">4. Stream</b> Launch mobile assets into prime traffic areas.</div>
-                            <div class="p-4 bg-slate-900 rounded-xl border border-slate-800"><b class="text-brandYellow block mb-1">5. Verify</b> Delivery of proof sheets & analytics.</div>
-                        </div>
-                    </div>
-
-                    <!-- SLIDE 5 -->
-                    <div class="slide-step space-y-6 my-auto">
-                        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Slide 05 // Scale Trajectory</span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Scale Targets & Capital Efficiency</h2>
-                        <div class="bg-gray-800/30 p-6 rounded-2xl border border-gray-800 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-                            <div><span class="text-xs uppercase text-gray-400">Phase 1</span><p class="text-2xl font-black text-white mt-1">3 Cities Active</p></div>
-                            <div><span class="text-xs uppercase text-gray-400">Phase 2 Target</span><p class="text-2xl font-black text-brandYellow mt-1">15+ Major Cities</p></div>
-                            <div><span class="text-xs uppercase text-gray-400">Projected Run Rate</span><p class="text-2xl font-black text-emerald-400 mt-1">₹25 Cr+ Gross</p></div>
-                        </div>
-                    </div>
-
-                    <!-- Slide Footer -->
-                    <div class="flex justify-between items-center border-t border-gray-800/80 pt-6 mt-8 text-xs text-gray-500">
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center border-t border-gray-800/80 pt-4 mt-6 gap-2 text-[11px] text-gray-500">
                         <div>AdRuns.in Corporate Presentation</div>
-                        <div>Confidential</div>
+                        <div>Confidential // Strategic Analytics Core</div>
                     </div>
                 </div>
             </div>
@@ -403,8 +552,8 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-brandDark text-gray-400 text-xs py-8 border-t border-slate-800 px-4">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer class="bg-black text-gray-400 text-xs py-8 border-t border-zinc-900 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <div>
                 <p class="font-bold text-white text-sm mb-1">AdRuns.in Transit Advertising Framework</p>
                 <p>&copy; 2026 AdRuns Media. All Rights Reserved. Hub Support: <a href="mailto:adruns1230@gmail.com" class="text-brandYellow underline">adruns1230@gmail.com</a></p>
@@ -414,50 +563,120 @@
 
     <!-- INTERACTIVE ENGINE SCRIPTS -->
     <script>
+        // Core Dropdown Toggle Feature Engine 
+        function toggleNavMenu() {
+            const menuElement = document.getElementById('dropdownNavMenu');
+            const iconElement = document.getElementById('menuIcon');
+            
+            if(menuElement.classList.contains('hidden')) {
+                menuElement.classList.remove('hidden');
+                iconElement.className = "fa-solid fa-xmark text-2xl sm:text-3xl"; // Transforms bar into clean close cross icon
+            } else {
+                menuElement.classList.add('hidden');
+                iconElement.className = "fa-solid fa-bars text-2xl sm:text-3xl"; // Reverts safely back to 3-line bar layout
+            }
+        }
+
+        // Handles page view swaps and collapses the drop-down panel automatically
+        function handleMenuNavigation(pageId) {
+            navigateTo(pageId);
+            toggleNavMenu();
+        }
+
+        // Global Page Layer Visibility Handler
         function navigateTo(pageId) {
             document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('text-brandYellow', 'bg-gray-800');
-                btn.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-gray-800');
-            });
-            
-            const targetBtn = Array.from(document.querySelectorAll('.nav-btn')).find(btn => btn.getAttribute('onclick').includes(pageId));
-            if(targetBtn) {
-                targetBtn.classList.remove('text-gray-400', 'hover:text-white', 'hover:bg-gray-800');
-                targetBtn.classList.add('text-brandYellow', 'bg-gray-800');
-            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function calculateCampaignMetrics() {
-            const city = document.getElementById('calcCity').value;
-            const autos = parseInt(document.getElementById('calcAutos').value);
-            const months = parseInt(document.getElementById('calcDuration').value);
+        // Live Sandbox Workflow Engine States
+        let currentAppStep = 1;
+        const totalAppSteps = 8;
 
-            document.getElementById('autoCountVal').innerText = `${autos} Autos`;
-            document.getElementById('durationVal').innerText = `${months} ${months === 1 ? 'Month' : 'Months'}`;
-
-            let ratePerAutoPerMonth = 900;
-            let reachFactorMultiplier = 5500;
-
-            if (city === 'delhi') { ratePerAutoPerMonth = 950; reachFactorMultiplier = 6000; }
-            else if (city === 'mumbai') { ratePerAutoPerMonth = 1100; reachFactorMultiplier = 6800; }
-            else if (city === 'bangalore') { ratePerAutoPerMonth = 1000; reachFactorMultiplier = 5700; }
-            else if (city === 'hyderabad') { ratePerAutoPerMonth = 900; reachFactorMultiplier = 5200; }
-
-            const totalCostValue = autos * ratePerAutoPerMonth * months;
-            const estimatedDailyReachValue = autos * reachFactorMultiplier;
-            const absoluteTotalViewsValue = estimatedDailyReachValue * 30 * months;
-
-            document.getElementById('metricDailyReach').innerText = estimatedDailyReachValue.toLocaleString('en-IN');
-            document.getElementById('metricTotalViews').innerText = absoluteTotalViewsValue >= 10000000 
-                ? `${(absoluteTotalViewsValue / 10000000).toFixed(2)} Cr` 
-                : `${(absoluteTotalViewsValue / 1000000).toFixed(2)} Million`;
-            document.getElementById('metricTotalCost').innerText = `₹${totalCostValue.toLocaleString('en-IN')}`;
+        function handleDropdownStepChange(stepVal) {
+            currentAppStep = parseInt(stepVal);
+            if(currentAppStep >= 3) {
+                const cityInput = document.getElementById('appCity').value;
+                document.querySelectorAll('.id-preview-city').forEach(el => el.innerText = cityInput);
+                updateRevenueSplitPreview();
+            }
+            syncWorkflowUI();
         }
 
+        function updateRevenueSplitPreview() {
+            const rawBudget = parseFloat(document.getElementById('appBudget').value) || 0;
+            const platformShare = rawBudget * 0.30;
+            const fleetShare = rawBudget * 0.70;
+
+            document.getElementById('split-platform').innerText = `₹${platformShare.toLocaleString('en-IN')}`;
+            document.getElementById('split-fleet').innerText = `₹${fleetShare.toLocaleString('en-IN')}`;
+
+            document.querySelectorAll('.id-preview-budget').forEach(el => el.innerText = `₹${rawBudget.toLocaleString('en-IN')}`);
+            document.querySelectorAll('.id-preview-payable').forEach(el => el.innerText = `₹${rawBudget.toLocaleString('en-IN')}`);
+        }
+
+        function changeWorkflowStep(direction) {
+            if (direction === 1 && currentAppStep === 1) {
+                const cityInput = document.getElementById('appCity').value;
+                document.querySelectorAll('.id-preview-city').forEach(el => el.innerText = cityInput);
+                updateRevenueSplitPreview();
+            }
+
+            if (direction === 1 && currentAppStep === totalAppSteps) {
+                currentAppStep = 1;
+                syncWorkflowUI();
+                return;
+            }
+
+            currentAppStep += direction;
+            if (currentAppStep < 1) currentAppStep = 1;
+            if (currentAppStep > totalAppSteps) currentAppStep = totalAppSteps;
+
+            syncWorkflowUI();
+        }
+
+        function syncWorkflowUI() {
+            document.getElementById('stepDropdownNavigator').value = currentAppStep.toString();
+
+            document.querySelectorAll('.workflow-step').forEach((card, index) => {
+                if ((index + 1) === currentAppStep) card.classList.add('active');
+                else card.classList.remove('active');
+            });
+
+            for (let i = 1; i <= totalAppSteps; i++) {
+                const badge = document.getElementById(`step-badge-${i}`);
+                if (badge) {
+                    if (i === currentAppStep) {
+                        badge.className = "flex-1 py-1 text-amber-600 border-b-2 border-amber-500";
+                    } else if (i < currentAppStep) {
+                        badge.className = "flex-1 py-1 text-emerald-600 border-b-2 border-emerald-500";
+                    } else {
+                        badge.className = "flex-1 py-1 text-gray-400 border-b-2 border-transparent";
+                    }
+                }
+            }
+            
+            const backBtn = document.getElementById('btnAppBack');
+            if (currentAppStep === 1) {
+                backBtn.setAttribute('disabled', 'true');
+                backBtn.className = "flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-gray-400 bg-gray-100 transition-all border border-gray-200 cursor-not-allowed select-none w-1/2 sm:w-auto";
+            } else {
+                backBtn.removeAttribute('disabled');
+                backBtn.className = "flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 active:scale-[0.98] transition-all border border-gray-300 cursor-pointer w-1/2 sm:w-auto";
+            }
+
+            const nextBtn = document.getElementById('btnAppNext');
+            if (currentAppStep === totalAppSteps) {
+                nextBtn.innerHTML = `Restart <i class="fa-solid fa-rotate-left text-[9px]"></i>`;
+                nextBtn.className = "flex items-center justify-center gap-1.5 px-5 py-2 rounded-xl text-xs font-black text-white bg-brandDark hover:bg-slate-800 active:scale-[0.98] transition-all shadow-sm border border-brandDark w-1/2 sm:w-auto";
+            } else {
+                nextBtn.innerHTML = `Advance <i class="fa-solid fa-chevron-right text-[9px]"></i>`;
+                nextBtn.className = "flex items-center justify-center gap-1.5 px-5 py-2 rounded-xl text-xs font-black text-brandDark bg-brandYellow hover:bg-yellow-500 active:scale-[0.98] transition-all shadow-sm border border-yellow-500 w-1/2 sm:w-auto";
+            }
+        }
+
+        // Slide Deck Configurations
         let activeSlideIndex = 1;
         const totalSlidesAvailable = 5;
 
@@ -481,35 +700,36 @@
             updateSlideVisibilityState();
         }
 
+        // Initiate Charts and Variables On Load
         window.onload = function() {
-            calculateCampaignMetrics();
+            updateRevenueSplitPreview();
             
             const ctxShare = document.getElementById('marketShareChart').getContext('2d');
             new Chart(ctxShare, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Billboards', 'Auto-Rickshaw Transit', 'Ambient OOH', 'DOOH Screens'],
+                    labels: ['Billboards', 'Transit Ads', 'Ambient OOH', 'Digital OOH'],
                     datasets: [{
                         data: [42, 28, 18, 12],
                         backgroundColor: ['#374151', '#FBC02D', '#9CA3AF', '#6B7280'],
                         borderWidth: 0
                     }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } } }
             });
 
             const ctxCpm = document.getElementById('cpmComparisonChart').getContext('2d');
             new Chart(ctxCpm, {
                 type: 'bar',
                 data: {
-                    labels: ['Transit (AdRuns)', 'Social Media', 'Google Search', 'Traditional OOH'],
+                    labels: ['Transit', 'Social', 'Search', 'Traditional'],
                     datasets: [{
                         data: [22, 140, 210, 180],
                         backgroundColor: ['#FBC02D', '#4B5563', '#4B5563', '#4B5563'],
                         borderRadius: 6
                     }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: '#E5E7EB' } } } }
             });
         };
     </script>
